@@ -35,7 +35,7 @@ export default function About() {
 						)}
 					/>
 				</div>
-				<div className="mt-5">
+				<div className="mt-6">
 					{isSmallScreen ? (
 						<Swiper
 							spaceBetween={30}
