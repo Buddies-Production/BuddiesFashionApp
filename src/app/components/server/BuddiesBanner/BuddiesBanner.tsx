@@ -1,26 +1,19 @@
-"use client";
-
-// import Image from "next/image";
-// import { BuddiesLogo, BurgerMenu } from "../../../../../public";
-// import clsx from "clsx";
+import clsx from "clsx";
 
 export default function BuddiesBanner() {
 	return (
 		<div
-			className="w-full flex items-center justify-center relative"
-			// onClick={() => {
-			// 	window.open("https://www.buddiesproductions.com/", "_blank");
-			// }}
+			className={clsx(
+				"w-full flex items-center justify-center relative h-[400px]",
+				"lg:h-[600px]"
+			)}
 		>
-			{/* <Image
-				src={BuddiesLogo}
-				alt="Buddies Production Logo"
-				className={clsx(
-					"h-10 w-16 absolute top-5 left-5",
-					"lg:h-20 lg:w-28 lg:top-10 lg:left-10"
-				)}
-			/> */}
-			<video src={require("./video.mp4")} autoPlay muted loop />
+			<iframe
+				className="w-full h-full"
+				src="https://www.youtube.com/embed/WtR7jqnSYI0?si=YOOzjvAFGtab7a7x"
+				title="YouTube video player"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			></iframe>
 		</div>
 	);
 }
