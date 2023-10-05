@@ -1,0 +1,23 @@
+.custom-file-input::-webkit-file-upload-button {
+	display: none;
+}
+.custom-file-input::before {
+	content: "Select image";
+	display: inline-block;
+	background: linear-gradient(top, #f9f9f9, #e3e3e3);
+	border: 1px solid #999;
+	border-radius: 3px;
+	padding: 5px 8px;
+	outline: none;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	cursor: pointer;
+	/* text-shadow: 1px 1px #fff; */
+	margin-right: 10px;
+}
+.custom-file-input:hover::before {
+	border-color: gray;
+}
+.custom-file-input:active::before {
+	border-color: white;
+}
