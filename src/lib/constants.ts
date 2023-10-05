@@ -18,7 +18,7 @@
 
 export enum PAYMENT {
 	MERCHANTID = "BUDDIESONLINE",
-	AMOUNT = "100",
+	AMOUNT = "100000",
 	REDIRECT_URL = "https://buddiesfashion.in/event-registration/form/registration-successful",
 	REDIRECT_MODE = "REDIRECT",
 	CALL_BACK_URL = "https://test-callback-phonepe.vercel.app/",
