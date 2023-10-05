@@ -23,14 +23,14 @@ export default function Media() {
 				</div>
 
 				<div>
-					<p
+					{/* <p
 						className={clsx(
 							"px-16 py-1 rounded-3xl bg-white w-fit text-black text-3xl mt-12",
 							"lg:text-5xl"
 						)}
 					>
 						Season 1
-					</p>
+					</p> */}
 					<div className="flex flex-wrap justify-between items-center pt-12">
 						<div className="h-[267px] w-[375px] border border-white">
 							<Image

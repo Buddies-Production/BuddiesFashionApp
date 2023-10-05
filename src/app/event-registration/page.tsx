@@ -4,8 +4,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import { BackButton } from "../components/server";
 
-import { RootState, useAppSelector } from "@/store/store";
-
 export default function EventRegistration() {
 	return (
 		<div
@@ -54,15 +52,13 @@ export default function EventRegistration() {
 				<div className="mt-3 flex">
 					<p className="font-bold whitespace-nowrap">Step 4:</p>
 					<p className="pl-5">
-						Click on the pay registration fees to pay the required
-						mandatory registration fees.
+						Once all the fields are completed, click on accept T&Cs
 					</p>
 				</div>
 				<div className="mt-3 flex">
 					<p className="font-bold whitespace-nowrap">Step 5</p>:{" "}
 					<p className="pl-5">
-						Once all the fields are completed, click on accept T&Cs
-						& submit the form
+						Click on submit and pay the registration fees
 					</p>
 				</div>
 				<p className="mt-5">
