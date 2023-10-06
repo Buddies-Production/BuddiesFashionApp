@@ -20,41 +20,43 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			{/* <head>
+			<head>
 				<Script
 					id="clarity"
 					dangerouslySetInnerHTML={{
-						__html: ((
-							c: any,
-							l: Document,
-							a: string,
-							r: string,
-							i: string,
-							t: HTMLScriptElement,
-							y: Element
-						) => {
-							c[a] =
-								c[a] ||
-								function (...args: any[]) {
-									(c[a].q = c[a].q || []).push(args);
-								};
-							t = l.createElement(r) as any;
-							t.async = 1 as any;
-							t.src = `https://www.clarity.ms/tag/${i}`;
-							y = l.getElementsByTagName(r)[0] as Element;
-							y.parentNode?.insertBefore(t, y);
-						})(
-							window,
-							document,
-							"clarity",
-							"script",
-							"j5vuarxglj",
-							document.createElement("script"),
-							document.querySelector("script") as any
-						) as any,
+						__html: `
+							(function(c, l, a, r, i, t, y) {
+							c[a] = c[a] || function() {
+								(c[a].q = c[a].q || []).push(arguments);
+							};
+							t = l.createElement(r);
+							t.async = 1;
+							t.src = "https://www.clarity.ms/tag/" + i;
+							y = l.getElementsByTagName(r)[0];
+							y.parentNode.insertBefore(t, y);
+							})(window, document, "clarity", "script", "j5vuarxglj");
+						`,
 					}}
 				/>
-			</head> */}
+				<Script
+					id="tawkTo"
+					dangerouslySetInnerHTML={{
+						__html: `
+							var Tawk_API = Tawk_API || {};
+							var Tawk_LoadStart = new Date();
+							(function () {
+								var s1 = document.createElement("script"),
+								s0 = document.getElementsByTagName("script")[0];
+								s1.async = true;
+								s1.src = 'https://embed.tawk.to/65203e84eb150b3fb99ed432/1hc2v8e09';
+								s1.charset = 'UTF-8';
+								s1.setAttribute('crossorigin', '*');
+								s0.parentNode.insertBefore(s1, s0);
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body
 				style={{
 					fontFamily: TinosFont.style.fontFamily,
