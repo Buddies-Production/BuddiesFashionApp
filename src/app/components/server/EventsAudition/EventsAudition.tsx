@@ -2,53 +2,9 @@ import clsx from "clsx";
 import EventCallToAction from "../EventCallToAction/EventCallToAction";
 import Image from "next/image";
 import { EventsAuditionOne, EventsAuditionTwo } from "../../../../../public";
+import { LOCATION_VENUE_DATE } from "@/lib/constants";
 
 export default function EventsAudition() {
-	const LocationVenueDate = [
-		{
-			location: "Shrinagar",
-			venue: "TBA",
-			date: "15th October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Jammu",
-			venue: "TBA",
-			date: "16th October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Ludhiana",
-			venue: "TBA",
-			date: "17th October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Delhi NCR",
-			venue: "TBA",
-			date: "19th October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Jaipur",
-			venue: "TBA",
-			date: "21st October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Indore",
-			venue: "TBA",
-			date: "24th October",
-			time: "10am to 4pm",
-		},
-		{
-			location: "Hyderabad",
-			venue: "TBA",
-			date: "27th October",
-			time: "10am to 4pm",
-		},
-	];
-
 	return (
 		<div
 			className={clsx(
@@ -120,7 +76,7 @@ export default function EventsAudition() {
 						<p className={clsx("hidden", "lg:block")}>Timings</p>
 					</div>
 
-					{LocationVenueDate.map((prop, idx) => {
+					{LOCATION_VENUE_DATE.map((prop, idx) => {
 						return (
 							<div
 								key={idx}
@@ -141,7 +97,7 @@ export default function EventsAudition() {
 								<p
 									className={clsx(
 										"w-[60px] text-center",
-										"lg:w-fit"
+										"lg:w-[200px]"
 									)}
 								>
 									{prop.date}

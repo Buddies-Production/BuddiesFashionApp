@@ -26,3 +26,42 @@ export enum PAYMENT {
 	SALT_KEY = "31a69617-dd30-4f5e-902c-0b663c2a06dc",
 	SALT_INDEX = "1",
 }
+
+export const LOCATION_VENUE_DATE = [
+	{
+		location: "Shrinagar",
+		venue: "TBA",
+		date: "15th October",
+		time: "10am to 4pm",
+	},
+	{
+		location: "Jammu",
+		venue: "TBA",
+		date: "16th October",
+		time: "10am to 4pm",
+	},
+	{
+		location: "Delhi NCR",
+		venue: "TBA",
+		date: "20th October",
+		time: "10am to 4pm",
+	},
+	{
+		location: "Jaipur",
+		venue: "TBA",
+		date: "TBA",
+		time: "10am to 4pm",
+	},
+	{
+		location: "Indore",
+		venue: "TBA",
+		date: "TBA",
+		time: "10am to 4pm",
+	},
+	{
+		location: "Hyderabad",
+		venue: "TBA",
+		date: "TBA",
+		time: "10am to 4pm",
+	},
+];

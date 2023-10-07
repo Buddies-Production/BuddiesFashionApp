@@ -27,7 +27,12 @@ export default function Home() {
 			<NavBar />
 
 			{/* Hero Section */}
-			<div className={clsx("relative w-full h-[600px]", "lg:h-screen")}>
+			<div
+				className={clsx(
+					"relative w-full h-[600px] bg-black",
+					"lg:h-screen"
+				)}
+			>
 				<Image
 					src={LandingBackdrop}
 					alt="Buddies Fashion Mr and Miss India Runaway Model"
