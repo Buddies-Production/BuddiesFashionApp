@@ -22,18 +22,6 @@ export default function RootLayout({
 		<html lang="en">
 			<head>
 				<Script
-					id="clarity"
-					dangerouslySetInnerHTML={{
-						__html: `
-							(function(c,l,a,r,i,t,y){
-								c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-								t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-								y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-							})(window, document, "clarity", "script", "j6fsjr846g");
-						`,
-					}}
-				/>
-				<Script
 					id="tawkTo"
 					dangerouslySetInnerHTML={{
 						__html: `
@@ -48,6 +36,12 @@ export default function RootLayout({
 								s1.setAttribute('crossorigin', '*');
 								s0.parentNode.insertBefore(s1, s0);
 							})();
+
+							(function(c,l,a,r,i,t,y){
+								c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+								t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+								y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+							})(window, document, "clarity", "script", "j6qv0r8773");
 						`,
 					}}
 				/>
