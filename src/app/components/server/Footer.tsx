@@ -81,15 +81,15 @@ export default function Footer() {
 			</div>
 			<div
 				className={clsx(
-					"flex justify-between text-xs w-full mt-5",
+					"flex justify-center text-xs w-full mt-5",
 					"lg:w-[30%] lg:text-base lg:mr-[5%] lg:mt-0"
 				)}
 			>
-				<div className="flex flex-col">
+				{/* <div className="flex flex-col">
 					<p className="font-bold">MTV D2R</p>
 					<Link href={"/media"}>Season 1</Link>
-				</div>
-				<div className="flex flex-col">
+				</div> */}
+				<div className="flex flex-col mr-10">
 					<p className="font-bold">Customer care</p>
 					<Link href={"/terms-conditions"}>Terms & Conditions</Link>
 					<Link href={"/privacy-policy"}>Privacy policy</Link>

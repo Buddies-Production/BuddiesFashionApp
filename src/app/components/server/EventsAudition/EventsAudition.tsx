@@ -113,7 +113,8 @@ export default function EventsAudition() {
 			<div className="pt-10">
 				<p className="text-xl lg:text-2xl">
 					For more information contact us at{" "}
-					<span className="font-bold">+91 93101-70380</span>
+					<span className="font-bold">+91 93101-70380, </span>
+					<span className="font-bold">+91 78278-01756</span>
 				</p>
 				<div
 					className={clsx(

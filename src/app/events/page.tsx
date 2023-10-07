@@ -121,7 +121,10 @@ export default function Events() {
 					<p className="text-lg lg:text-2xl">
 						For more information contact us at{" "}
 						<span className="font-bold whitespace-nowrap">
-							+91 93101-70380
+							+91 93101-70380,{" "}
+						</span>
+						<span className="font-bold whitespace-nowrap">
+							+91 78278-01756
 						</span>
 					</p>
 					<div
