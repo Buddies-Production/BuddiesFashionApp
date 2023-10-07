@@ -1128,6 +1128,7 @@ const Form = () => {
 									placeholder="Mobile no."
 									type="tel"
 									name="mobileNumber"
+									className={clsx("my-5", "lg:my-0 lg:mr-5")}
 									onChange={(e) =>
 										handleNumberInput(e, "mobileNumber")
 									}
@@ -1154,6 +1155,7 @@ const Form = () => {
 									placeholder="Email"
 									type="email"
 									name="email"
+									className={clsx("my-5", "lg:my-0 lg:mx-5")}
 									onChange={(e) =>
 										setModelContactDetails((prevData) => ({
 											...prevData,
