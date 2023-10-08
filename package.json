@@ -12,6 +12,7 @@
     "@auth/mongodb-adapter": "^2.0.0",
     "@aws-sdk/client-s3": "^3.414.0",
     "@aws-sdk/s3-request-presigner": "^3.414.0",
+    "@mailchimp/mailchimp_transactional": "^1.0.50",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
