@@ -1,7 +1,7 @@
 import { sha256 } from "js-sha256";
 import { useEffect, useState } from "react";
 
-import { store, useAppSelector } from "@/store/store";
+import { store } from "@/store/store";
 
 import { PAYMENT } from "./constants";
 

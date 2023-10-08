@@ -58,7 +58,7 @@ export default function EventRegistration() {
 				<div className="mt-3 flex">
 					<p className="font-bold whitespace-nowrap">Step 5</p>:{" "}
 					<p className="pl-5">
-						Click on submit and pay the registration fees
+						Click on submit and pay the registration fees of ₹1000
 					</p>
 				</div>
 				<p className="mt-5">

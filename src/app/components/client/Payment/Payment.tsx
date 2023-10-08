@@ -1,10 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { sha256 } from "js-sha256";
 
-import { PAYMENT } from "@/lib/constants";
-import { useAppSelector } from "@/store/store";
 import { getRequestData } from "@/lib/util";
 
 /*
@@ -150,7 +147,6 @@ const Payment = () => {
 			});
 
 			const body = await res.json();
-			console.log("body:::", body);
 			const url = body.data.instrumentResponse.redirectInfo?.url;
 			window.open(url, "_self");
 		} catch (err) {

@@ -3,7 +3,7 @@
 import clsx from "clsx";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { BackButton, CrossIcon } from "@/app/components/server";
@@ -25,7 +25,7 @@ import {
 	PREFFERED_AUDITION_CITY,
 	STATES,
 	YEAR,
-} from "./formConstant";
+} from "@/lib/constants";
 import { CustomInput, FileInput, ImageDialog } from "@/app/components/client";
 
 // import { setContactDetails } from "@/store/features/model/model.slice";
@@ -324,8 +324,6 @@ const Form = () => {
 					},
 				}),
 			});
-
-			console.log("res:", res);
 
 			const formDataGoogleDocs = new FormData();
 			formDataGoogleDocs.append("FirstName", modelName.firstName);
