@@ -14,13 +14,17 @@ import {
 	RahulKhandelwal,
 } from "../../../../../public";
 
+import { Cedarville_Cursive } from "next/font/google";
+
+const cursiveFont = Cedarville_Cursive({ weight: ["400"], subsets: ["latin"] });
+
 export default function MembersLanding() {
 	const [isSmallScreen] = useGetSize();
 
 	return (
 		<div
 			className={clsx(
-				`bg-white w-full py-[50px] px-[30px]`,
+				`bg-black w-full py-[50px] px-[30px]`,
 				"lg:px-[58px] lg:pt-[78px] lg:pb-[111px]"
 			)}
 		>
@@ -28,18 +32,18 @@ export default function MembersLanding() {
 				<div className="w-full flex items-center">
 					<div
 						className={clsx(
-							"text-2xl font-normal text-black whitespace-nowrap",
+							"text-2xl font-normal text-white whitespace-nowrap",
 							"lg:text-[64px] lg:mb-5"
 						)}
 					>
 						Members
 					</div>
-					<div className="ml-10 h-px w-full bg-black" />
+					<div className="ml-10 h-px w-full bg-white" />
 				</div>
 				<div className="mt-10">
 					<p
 						className={clsx(
-							"text-black text-2xl mb-5",
+							"text-white text-2xl mb-5",
 							"lg:text-[40px]"
 						)}
 					>
@@ -55,130 +59,115 @@ export default function MembersLanding() {
 							}}
 							modules={[Autoplay]}
 							className="mySwiper"
+							style={{
+								fontFamily: cursiveFont.style.fontFamily,
+							}}
 						>
 							<SwiperSlide>
-								<Image
-									src={MohitRaghav}
+								<SmImageContainer
 									alt="Producer & CEO"
-									className={clsx(
-										"w-full h-full rounded-xl cursor-pointer"
-										// "lg:w-[245px] lg:h-[300px]"
-									)}
-									onClick={() =>
-										window.open(
-											"https://www.instagram.com/mohit.raghav15/",
-											"_blank"
-										)
-									}
+									imgSrc={MohitRaghav}
+									instaLink="https://www.instagram.com/mohit.raghav15/"
+									name="Mohit Raghav"
 								/>
 							</SwiperSlide>
 							<SwiperSlide>
-								<Image
-									src={PulkitRaghav}
-									alt="Producer & Creative"
-									className={clsx(
-										"w-full h-full rounded-xl cursor-pointer"
-										// "lg:w-[245px] lg:h-[300px]"
-									)}
-									onClick={() =>
-										window.open(
-											"https://www.instagram.com/raghavpulkit/",
-											"_blank"
-										)
-									}
-								/>
+								<div className="h-[400px] w-[350px] flex flex-col items-center justify-center">
+									<Image
+										src={PulkitRaghav}
+										alt="Producer & Creative"
+										className={clsx("w-full h-[385px]")}
+										style={{
+											objectFit: "cover",
+											objectPosition: "50% 20%",
+										}}
+										onClick={() =>
+											window.open(
+												"https://www.instagram.com/raghavpulkit/",
+												"_blank"
+											)
+										}
+									/>
+									<p className="text-3xl text-center">
+										Pulkit Raghav
+									</p>
+								</div>
 							</SwiperSlide>
 							<SwiperSlide>
-								<Image
-									src={GautamNain}
-									alt="Producer & Director"
-									className={clsx(
-										"w-full h-full rounded-xl cursor-pointer"
-										// "lg:w-[245px] lg:h-[300px]"
-									)}
-									onClick={() =>
-										window.open(
-											"https://www.instagram.com/gautam_nain_official/",
-											"_blank"
-										)
-									}
-								/>
+								<div className="h-[400px] w-[350px] flex flex-col items-center justify-center">
+									<Image
+										src={GautamNain}
+										alt="Producer & Director"
+										className={clsx("w-full h-[385px]")}
+										style={{
+											objectFit: "cover",
+											objectPosition: "50% 20%",
+										}}
+										onClick={() =>
+											window.open(
+												"https://www.instagram.com/gautam_nain_official/",
+												"_blank"
+											)
+										}
+									/>
+									<p className="text-3xl text-center">
+										Gautam Nain
+									</p>
+								</div>
 							</SwiperSlide>
 							<SwiperSlide>
-								<Image
-									src={RahulKhandelwal}
-									alt="Producer & Finance"
-									className={clsx(
-										"w-full h-full rounded-xl cursor-pointer"
-										// "lg:w-[245px] lg:h-[300px]"
-									)}
-									onClick={() =>
-										window.open(
-											"https://www.instagram.com/rahulkhandelwal167/",
-											"_blank"
-										)
-									}
-								/>
+								<div className="h-[400px] w-[350px] flex flex-col items-center justify-center">
+									<Image
+										src={RahulKhandelwal}
+										alt="Producer & Finance"
+										className={clsx("w-full h-[385px]")}
+										style={{
+											objectFit: "cover",
+											objectPosition: "50% 20%",
+										}}
+										onClick={() =>
+											window.open(
+												"https://www.instagram.com/rahulkhandelwal167/",
+												"_blank"
+											)
+										}
+									/>
+									<p className="text-3xl text-center">
+										Rahul Khandelwal
+									</p>
+								</div>
 							</SwiperSlide>
 						</Swiper>
 					) : (
-						<div className="flex justify-between items-center">
-							<Image
-								src={MohitRaghav}
+						<div
+							className="flex justify-between items-center"
+							style={{
+								fontFamily: cursiveFont.style.fontFamily,
+							}}
+						>
+							<LgImageContainer
+								imgSrc={MohitRaghav}
 								alt="Producer & CEO"
-								className={clsx(
-									"w-full h-full rounded-md cursor-pointer border border-black",
-									"lg:w-[230px] lg:h-[280px]"
-								)}
-								onClick={() =>
-									window.open(
-										"https://www.instagram.com/mohit.raghav15/",
-										"_blank"
-									)
-								}
+								instaLink="https://www.instagram.com/mohit.raghav15/"
+								name="Mohit Raghav"
 							/>
-							<Image
-								src={PulkitRaghav}
+							<LgImageContainer
+								imgSrc={PulkitRaghav}
 								alt="Producer & Creative"
-								className={clsx(
-									"w-full h-full rounded-md cursor-pointer border border-black",
-									"lg:w-[210px] lg:h-[280px]"
-								)}
-								onClick={() =>
-									window.open(
-										"https://www.instagram.com/raghavpulkit/",
-										"_blank"
-									)
-								}
+								instaLink="https://www.instagram.com/raghavpulkit/"
+								name="Pulkit Raghav"
 							/>
-
-							<Image
-								src={GautamNain}
+							<LgImageContainer
+								imgSrc={GautamNain}
 								alt="Producer & Director"
-								className={clsx(
-									"w-full h-full rounded-md cursor-pointer border border-black",
-									"lg:w-[200px] lg:h-[270px]"
-								)}
-								onClick={() =>
-									window.open(
-										"https://www.instagram.com/gautam_nain_official/",
-										"_blank"
-									)
-								}
+								instaLink="https://www.instagram.com/gautam_nain_official/"
+								name="Gautam Nain"
 							/>
-							<Image
-								src={RahulKhandelwal}
+							<LgImageContainer
+								imgSrc={RahulKhandelwal}
 								alt="Producer & Finance"
-								className={clsx(
-									"rounded-md cursor-pointer border border-black",
-									"lg:w-[230px] lg:h-[280px]"
-								)}
-								onClick={() =>
-									window.open(
-										"https://www.instagram.com/rahulkhandelwal167/",
-										"_blank"
-									)
-								}
+								instaLink="https://www.instagram.com/rahulkhandelwal167/"
+								name="Rahul Khandelwal"
 							/>
 						</div>
 					)}
@@ -187,3 +176,58 @@ export default function MembersLanding() {
 		</div>
 	);
 }
+
+const LgImageContainer = (props: {
+	imgSrc: any;
+	alt: string;
+	instaLink: string;
+	name: string;
+}) => {
+	return (
+		<div className="group">
+			<div className="overflow-hidden cursor-pointer">
+				<Image
+					src={props.imgSrc}
+					alt={props.alt}
+					className={clsx(
+						"transition-transform duration-500",
+						"group-hover:scale-110",
+						"lg:w-[230px] lg:h-[280px]"
+					)}
+					style={{
+						objectFit: "cover",
+					}}
+					onClick={() => window.open(props.instaLink, "_blank")}
+				/>
+			</div>
+			<p className="lg:text-3xl text-center">{props.name}</p>
+		</div>
+	);
+};
+
+const SmImageContainer = (props: {
+	imgSrc: any;
+	alt: string;
+	instaLink: string;
+	name: string;
+}) => {
+	return (
+		<div className="h-[400px] w-[350px] flex flex-col items-center justify-center">
+			<Image
+				src={MohitRaghav}
+				alt="Producer & CEO"
+				className={clsx("w-full h-[385px]")}
+				style={{
+					objectFit: "cover",
+				}}
+				onClick={() =>
+					window.open(
+						"https://www.instagram.com/mohit.raghav15/",
+						"_blank"
+					)
+				}
+			/>
+			<p className="text-3xl text-center">Mohit Raghav</p>
+		</div>
+	);
+};
