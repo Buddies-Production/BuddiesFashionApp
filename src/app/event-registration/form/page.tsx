@@ -501,9 +501,6 @@ const Form = () => {
 							"lg:text-2xl"
 						)}
 					>
-						<button onClick={() => setPaymentPageOpen(false)}>
-							CLOSE
-						</button>
 						<Payment />
 					</div>
 				</div>
