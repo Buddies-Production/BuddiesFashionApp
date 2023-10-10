@@ -104,6 +104,8 @@ BASE64_ENCODED: ewogICJtZXJjaGFudElkIjogIlBHVEVTVFBBWVVBVDEzOSIsCiAgIm1lcmNoYW50
 SHA256: 5961312421a0e8a7237895131c07849a979564944335d1dffafd5d1a08086ca6
 X-VERIFY: 5961312421a0e8a7237895131c07849a979564944335d1dffafd5d1a08086ca6###1
 */
+
+
 export default function Payments() {
 	const [loader, setLoader] = useState<boolean>(false);
 	const router = useRouter();

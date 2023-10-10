@@ -7,6 +7,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+
 export default function RegistrationSuccessful() {
 	const [paymentStatus, setPaymentStatus] = useState("");
 	const [registrationStatus, setRegistrationStatus] = useState("");
@@ -41,7 +42,7 @@ export default function RegistrationSuccessful() {
 			return prev;
 		});
 	}
-
+// http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
 	async function updatePaymentStatusDB() {
 		await fetch(
 			`/api/model-registration?merchantTransactionID=${userTransactionID}&xverify=${x_verify}`,
