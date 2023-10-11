@@ -36,6 +36,7 @@ import Payment from "@/app/components/client/Payment/Payment";
 import modelUserData from "@/models/modelUserData";
 import dbConnect from "@/lib/mongodb";
 import { setTransactionID, setUserID } from "@/store/features/user/user.slice";
+import { getRequestData } from "@/lib/util";
 
 export interface ModelPictures {
 	closeUp: File | undefined;
@@ -379,7 +380,34 @@ const Form = () => {
 
 			if (res.ok) {
 				setLoader(false);
-				setPaymentPageOpen(true);
+
+				// Payment section
+				const handlePayments = async () => {
+					const { base64EncodedPayload, x_verify } = getRequestData();
+
+					try {
+						const res = await fetch("/api/payment-gateway", {
+							method: "POST",
+							headers: {
+								accept: "application/json",
+								"Content-Type": "application/json",
+								"X-VERIFY": x_verify,
+							},
+							body: JSON.stringify({
+								request: base64EncodedPayload,
+							}),
+						});
+
+						const body = await res.json();
+						const url =
+							body.data.instrumentResponse.redirectInfo?.url;
+						window.open(url, "_self");
+					} catch (err) {
+						console.log("error in the start:", err);
+					}
+				};
+				handlePayments();
+				// setPaymentPageOpen(true);
 			} else {
 				setLoader(false);
 				setErrorPage(true);
@@ -472,7 +500,7 @@ const Form = () => {
 							reload the page and try again or contact our
 							helpline number{" "}
 							<span className="whitespace-nowrap font-bold">
-								+91 8851-833014
+								+91 93101-70380 or +91 78278-01756
 							</span>
 							<p className="text-xs mt-5 text-left">
 								- You might&apos;ve missed some fields in the
@@ -480,13 +508,13 @@ const Form = () => {
 							</p>
 							<p className="text-xs mt-3 text-left">
 								- There might be some error with the form server
-								please contact out helpline number
+								please contact our helpline number
 							</p>
 							<button
 								className="px-5 py-3 bg-white rounded text-black font-bold mt-5"
 								onClick={() => window.location.reload()}
 							>
-								RELOAD
+								REFRESH THE PAGE
 							</button>
 						</div>
 					</div>
