@@ -442,12 +442,12 @@ const Form = () => {
 	}, [modelDateInputs]);
 
 	return (
-		<div className={clsx("font-sans bg-black relative px-5 py-28")}>
+		<div className={clsx("font-sans bg-black relative px-3 py-28")}>
 			{fileSizeError && (
 				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
 					<div
 						className={clsx(
-							"tracking-wide relative h-[60%] w-[60%] bg-black rounded-md text-center flex items-center justify-center px-5",
+							"border border-white tracking-wide relative h-[60%] w-[60%] bg-black rounded-md text-center flex items-center justify-center px-5",
 							"sm:text-sm",
 							"lg:text-2xl"
 						)}
@@ -490,12 +490,12 @@ const Form = () => {
 				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
 					<div
 						className={clsx(
-							"tracking-wide relative h-[60%] w-[60%] bg-black rounded-md text-center flex items-center justify-center px-20",
-							"sm:text-sm",
-							"lg:text-2xl"
+							"border border-white tracking-wide relative h-[60%] w-[80%] bg-black rounded-md text-center flex items-center justify-center",
+							"text-xs",
+							"lg:text-2xl lg:w-[60%] lg:px-20"
 						)}
 					>
-						<div>
+						<div className="px-5">
 							An error occured with the form submission please
 							reload the page and try again or contact our
 							helpline number{" "}
@@ -508,7 +508,10 @@ const Form = () => {
 							</p>
 							<p className="text-xs mt-3 text-left">
 								- There might be some error with the form server
-								please contact our helpline number
+								please contact our helpline number{" "}
+								<span className="whitespace-nowrap font-bold">
+									+91 93101-70380 or +91 78278-01756
+								</span>
 							</p>
 							<button
 								className="px-5 py-3 bg-white rounded text-black font-bold mt-5"
@@ -631,7 +634,7 @@ const Form = () => {
 			)}
 			{showTermsAndConditions && (
 				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
-					<div className="relative h-[80%] w-[80%] bg-black rounded flex flex-col justify-center items-center">
+					<div className="border border-white relative h-[80%] w-[80%] bg-black rounded flex flex-col justify-center items-center">
 						<CrossIcon
 							onClick={() => setShowTermsAndConditions(false)}
 							className="absolute top-5 right-5 text-white cursor-pointer h-10 w-10"
@@ -799,11 +802,11 @@ const Form = () => {
 							contact through whatsapp on the helpline number
 							between{" "}
 							<span className="font-bold">
-								11:30 AM - 8 PM
+								11:00 AM - 8 PM
 							</span>{" "}
-							at{" "}
-							<span className="font-bold">+91 8851-833014</span>,
-							or email us at{" "}
+							at
+							<b>+91 93101-70380</b>
+							or <b>+91 78278-01756</b>, or email us at{" "}
 							<span className="font-bold">
 								support@buddiesproductions.com
 							</span>

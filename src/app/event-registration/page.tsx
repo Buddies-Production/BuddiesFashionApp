@@ -66,8 +66,8 @@ export default function EventRegistration() {
 					am to 7 pm.
 				</p>
 				<p className="mt-3">
-					Contact: <b>+91 93101-70380</b> or kindly write to us on{" "}
-					<b>support@buddiesproductions.com</b>
+					Contact: <b>+91 93101-70380</b> or <b>+91 78278-01756</b> or
+					kindly write to us on <b>support@buddiesproductions.com</b>
 				</p>
 				<div className="w-full flex mt-10 mb-10 justify-center">
 					<Link
