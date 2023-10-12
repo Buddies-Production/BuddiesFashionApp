@@ -7,9 +7,7 @@ import { PAYMENT } from "./constants";
 
 export const getRequestData = () => {
 	const userTransactionID = store.getState().userReducer.userTransactionID;
-	console.log("userTransactionID:", userTransactionID);
 	const userID = store.getState().userReducer.userID;
-	console.log("userID:", userTransactionID);
 
 	const PAYMENT_PAYLOAD = {
 		merchantId: PAYMENT.MERCHANTID,
