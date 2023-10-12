@@ -8,7 +8,6 @@ const client = require("@mailchimp/mailchimp_transactional")(
 );
 import ModelSchema, { modelUserSchemaType } from "@/models/modelUserData";
 
-
 /*
 
 {
@@ -75,57 +74,61 @@ xverify - 51b420194162412be0a2cbac45d9570e97df21d93837107668e069b23bd15a3b###1
 
 export async function POST(req: NextRequest) {
 	await dbConnect();
-  const modelRegistrationData:modelUserSchemaType[] = await ModelSchema.find({paymentStatus:{ "$ne": "PAYMENT_SUCCESS" }})
+	const modelRegistrationData: modelUserSchemaType[] = await ModelSchema.find(
+		{ paymentStatus: { $ne: "PAYMENT_SUCCESS" } }
+	);
 
-  modelRegistrationData.forEach(async(modelData)=>{
-	const sha = sha256(`/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}${PAYMENT.SALT_KEY}`)
-	const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
-    const res = await fetch(
-      `https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-          "X-VERIFY":x_verify, 
-          "X-MERCHANT-ID": "BUDDIESONLINE",
-        },
-      }
-    );
-  
-    const body = await res.json();
-	console.log({body})
+	modelRegistrationData.forEach(async (modelData) => {
+		const sha = sha256(
+			`/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}${PAYMENT.SALT_KEY}`
+		);
+		const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
+		const res = await fetch(
+			`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}`,
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+					"Content-Type": "application/json",
+					"X-VERIFY": x_verify,
+					"X-MERCHANT-ID": "BUDDIESONLINE",
+				},
+			}
+		);
 
-    await ModelSchema.updateOne(
-      { uid: {
-        userID: modelData.uid.userID,
-        userTransactionID: modelData.uid.userTransactionID
-      }}, //updating payment status
-      { $set: { paymentStatus: body.code } }
-    );
+		const body = await res.json();
+		console.log({ body });
 
-	if(body.code=="PAYMENT_SUCCESS"){ //send mail only if the payment is successful
-    const message = {
-      from_email: "support@buddiesproductions.com",
-      subject: "test",
-      text:`Payment Status : ${body.code}`,
-      to: [
-        {
-          email: modelData.contactDetails.email,
-          type: "to"
-        }
-      ]
-    };
+		await ModelSchema.updateOne(
+			{
+				uid: {
+					userID: modelData.uid.userID,
+					userTransactionID: modelData.uid.userTransactionID,
+				},
+			}, //updating payment status
+			{ $set: { paymentStatus: body.code } }
+		);
 
-    // const response = await client.messages.send({
-    //   message
-    // });
-    // console.log(response);
+		if (body.code == "PAYMENT_SUCCESS") {
+			//send mail only if the payment is successful
+			const message = {
+				from_email: "support@buddiesproductions.com",
+				subject: "test",
+				text: `Payment Status : ${body.code}`,
+				to: [
+					{
+						email: modelData.contactDetails.email,
+						type: "to",
+					},
+				],
+			};
 
-}
-   
-  })
-
+			// const response = await client.messages.send({
+			//   message
+			// });
+			// console.log(response);
+		}
+	});
 
 	// async function run() {
 	//   const response = await client.messages.send({

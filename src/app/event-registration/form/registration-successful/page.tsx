@@ -7,7 +7,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-
 export default function RegistrationSuccessful() {
 	const [paymentStatus, setPaymentStatus] = useState("");
 	const [registrationStatus, setRegistrationStatus] = useState("");
@@ -26,7 +25,19 @@ export default function RegistrationSuccessful() {
 			}
 		);
 
+		// TEST HERE
+		const resMail = await fetch("/api/mail", {
+			method: "POST",
+			body: "hello",
+		});
+
+		const val = resMail.json();
+		console.log("return from mail:", val);
+		// xxxxxxx
+
 		const body = await res.json();
+		console.log("body::", body);
+
 		return body;
 	}
 
@@ -42,7 +53,7 @@ export default function RegistrationSuccessful() {
 			return prev;
 		});
 	}
-// http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
+	// http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
 	async function updatePaymentStatusDB() {
 		await fetch(
 			`/api/model-registration?merchantTransactionID=${userTransactionID}&xverify=${x_verify}`,

@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
 			"merchantTransactionID"
 		);
 
-		console.log({merchantId,xverify,merchantTransactionID})
+		// console.log({merchantId,xverify,merchantTransactionID})
 
 		const res = await fetch(
 			`https://api.phonepe.com/apis/hermes/pg/v1/status/${merchantId}/${merchantTransactionID}`,
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 				headers: {
 					accept: "application/json",
 					"Content-Type": "application/json",
-					"X-VERIFY": `${xverify+"###"+PAYMENT.SALT_INDEX}`,
+					"X-VERIFY": `${xverify + "###" + PAYMENT.SALT_INDEX}`,
 					"X-MERCHANT-ID": merchantId as string,
 				},
 			}
@@ -61,7 +61,6 @@ export async function POST(req: NextRequest) {
 	}
 }
 
-
 //this request runs everytime the user is redirected to registraion-successful page
 // http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
 
@@ -70,7 +69,9 @@ export async function PUT(req: NextRequest) {
 		"merchantTransactionID"
 	);
 
-	const sha = sha256(`/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}${PAYMENT.SALT_KEY}`)
+	const sha = sha256(
+		`/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}${PAYMENT.SALT_KEY}`
+	);
 	const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
 	const res = await fetch(
 		`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}`,
@@ -80,15 +81,17 @@ export async function PUT(req: NextRequest) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				"X-VERIFY":x_verify,
+				"X-VERIFY": x_verify,
 				"X-MERCHANT-ID": `${PAYMENT.MERCHANTID}`,
 			},
 		}
 	);
 
 	const body = await res.json();
-	const modelRegistrationStatus = await ModelSchema.findOne({"uid.userTransactionID":merchantTransactionId});
-	// console.log({modelRegistrationStatus}) 
+	const modelRegistrationStatus = await ModelSchema.findOne({
+		"uid.userTransactionID": merchantTransactionId,
+	});
+	// console.log({modelRegistrationStatus})
 	const paymentStatus = body.code;
 
 	await dbConnect();
@@ -97,8 +100,6 @@ export async function PUT(req: NextRequest) {
 		modelRegistrationStatus, //updating payment status
 		{ $set: { paymentStatus: paymentStatus } }
 	);
-
-
 
 	//send the mail with the status to the user , uncomment this to actually send the mail
 	// const message = {
@@ -112,13 +113,15 @@ export async function PUT(req: NextRequest) {
 	// 	  }
 	// 	]
 	//   };
-  
+
 	//   const response = await client.messages.send({
 	//     message
 	//   });
 	//   console.log(response);
-  	
-	const updatedStatus = await ModelSchema.findOne({"uid.userTransactionID":merchantTransactionId});
+
+	const updatedStatus = await ModelSchema.findOne({
+		"uid.userTransactionID": merchantTransactionId,
+	});
 	return NextResponse.json({
 		status: {
 			message: "Payment Status Updated",
