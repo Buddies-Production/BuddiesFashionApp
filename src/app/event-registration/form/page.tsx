@@ -230,8 +230,8 @@ const Form = () => {
 		const userID = uuidv4();
 		const userTransctionID = uuidv4();
 
-		console.log("userID:", userID);
-		console.log("userTransctionID:", userTransctionID);
+		// console.log("userID:", userID);
+		// console.log("userTransctionID:", userTransctionID);
 
 		dispatch(setUserID(userID));
 		dispatch(setTransactionID(userTransctionID));
@@ -373,7 +373,7 @@ const Form = () => {
 				});
 
 				const val = await formRes.json();
-				console.log("formRes:", val);
+				// console.log("formRes:", val);
 			} catch (error) {
 				console.log("Error in google docs submission:", error);
 			}

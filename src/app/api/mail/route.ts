@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
 		);
 
 		const body = await res.json();
-		console.log({ body });
+		// console.log({ body });
 
 		await ModelSchema.updateOne(
 			{

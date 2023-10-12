@@ -36,7 +36,7 @@ export default function RegistrationSuccessful() {
 		// xxxxxxx
 
 		const body = await res.json();
-		console.log("body::", body);
+		// console.log("body::", body);
 
 		return body;
 	}
