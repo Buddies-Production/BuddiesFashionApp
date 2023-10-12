@@ -26,13 +26,13 @@ export default function RegistrationSuccessful() {
 		);
 
 		// TEST HERE
-		const resMail = await fetch("/api/mail", {
-			method: "POST",
-			body: "hello",
-		});
+		// const resMail = await fetch("/api/mail", {
+		// 	method: "POST",
+		// 	body: "hello",
+		// });
 
-		const val = resMail.json();
-		console.log("return from mail:", val);
+		// const val = await resMail.json();
+		// console.log("return from mail:", val);
 		// xxxxxxx
 
 		const body = await res.json();
