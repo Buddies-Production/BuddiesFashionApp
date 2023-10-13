@@ -377,8 +377,7 @@ const Form = () => {
 					body: formDataGoogleDocs,
 				});
 
-				const val = await formRes.json();
-				// console.log("formRes:", val);
+				await formRes.json();
 			} catch (error) {
 				console.log("Error in google docs submission:", error);
 			}

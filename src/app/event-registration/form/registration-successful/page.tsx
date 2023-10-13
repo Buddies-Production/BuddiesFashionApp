@@ -17,6 +17,8 @@ export default function RegistrationSuccessful() {
 		(state) => state.userReducer.userTransactionID
 	);
 	const userEmail = useAppSelector((state) => state.userReducer.userEmail);
+	console.log("userEmail:", userEmail);
+	console.log("userTransactionID:", userTransactionID);
 	const x_verify = sha256(
 		`/pg/v1/status/${PAYMENT.MERCHANTID}/${userTransactionID}${PAYMENT.SALT_KEY}`
 	);
