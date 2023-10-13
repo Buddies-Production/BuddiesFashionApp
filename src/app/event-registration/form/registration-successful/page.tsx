@@ -120,7 +120,10 @@ export default function RegistrationSuccessful() {
 							"lg:text-2xl"
 						)}
 					>
-						<p className="px-20 lg:px-10">{paymentStatus}</p>
+						{/* <p className="px-20 lg:px-10">{paymentStatus}</p> */}
+						<p className="px-20 lg:px-10">
+							Payment successful! We will contact you soon
+						</p>
 						<div className="mt-5 lg:mt-10">
 							<Link
 								className="bg-white px-5 py-3 text-black font-bold"
