@@ -1,9 +1,9 @@
 "use client";
 
 import { PAYMENT } from "@/lib/constants";
-import { getRequestData } from "@/lib/util";
 import { useAppSelector } from "@/store/store";
 import clsx from "clsx";
+import { sha256 } from "js-sha256";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -14,7 +14,10 @@ export default function RegistrationSuccessful() {
 	const userTransactionID = useAppSelector(
 		(state) => state.userReducer.userTransactionID
 	);
-	const { x_verify } = getRequestData();
+	// const { x_verify } = getRequestData();
+	const x_verify = sha256(
+		`/pg/v1/status/${PAYMENT.MERCHANTID}/${userTransactionID}${PAYMENT.SALT_KEY}`
+	);
 
 	async function handlePhonePeCheckApi() {
 		const res = await fetch(
@@ -26,17 +29,17 @@ export default function RegistrationSuccessful() {
 		);
 
 		// TEST HERE
-		// const resMail = await fetch("/api/mail", {
-		// 	method: "POST",
-		// 	body: "hello",
-		// });
+		const resMail = await fetch("/api/mail", {
+			method: "POST",
+			body: "hello",
+		});
 
-		// const val = await resMail.json();
-		// console.log("return from mail:", val);
+		const val = await resMail.json();
+		console.log("return from mail:", val);
 		// xxxxxxx
 
 		const body = await res.json();
-		// console.log("body::", body);
+		console.log("body::", body);
 
 		return body;
 	}
@@ -76,7 +79,8 @@ export default function RegistrationSuccessful() {
 	return (
 		<div className="h-screen w-screen bg-black flex justify-center items-center">
 			<div className={clsx("text-white text-center", "lg:text-2xl")}>
-				{/* <p>{paymentStatus}</p> */}
+				<p>{paymentStatus}</p>
+				<p>{registrationStatus}</p>
 				<p>Registration successfull</p>
 				<p>We will contact you soon!</p>
 				<div className="mt-5">
