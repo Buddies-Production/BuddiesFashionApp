@@ -16,6 +16,7 @@ export default function RegistrationSuccessful() {
 	const userTransactionID = useAppSelector(
 		(state) => state.userReducer.userTransactionID
 	);
+	// const userTransactionID = "6097fe8d-b79d-4103-a7b1-4e942a219d1e";
 	const userEmail = useAppSelector((state) => state.userReducer.userEmail);
 	console.log("userEmail:", userEmail);
 	console.log("userTransactionID:", userTransactionID);

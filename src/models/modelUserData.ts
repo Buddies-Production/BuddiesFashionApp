@@ -167,11 +167,11 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 			pancard: {
 				id: {
 					type: String,
-					required: true,
+					required: false,
 				},
 				image: {
 					type: String,
-					required: true,
+					required: false,
 				},
 			},
 			passport: {

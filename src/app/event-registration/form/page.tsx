@@ -1319,11 +1319,11 @@ const Form = () => {
 							</div>
 
 							<div className="text-white w-full flex flex-wrap items-center justify-start mt-7">
-								<p className="font-bold">Pancard* :</p>
+								<p className="font-bold">Pancard :</p>
 								<div className="ml-5">
 									<CustomInput
 										val={modelOfficialDetails.pancard.id}
-										required
+										required={false}
 										placeholder="Pancard"
 										type="text"
 										name="pancardID"
@@ -1350,7 +1350,7 @@ const Form = () => {
 										setModelPictures={setModelPictures}
 										pictureShot="pancard"
 										setFileSizeError={setFileSizeError}
-										required={true}
+										required={false}
 									/>
 								</div>
 							</div>
