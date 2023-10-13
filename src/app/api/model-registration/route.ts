@@ -29,6 +29,10 @@ export async function GET(req: NextRequest) {
 				},
 			}
 		);
+
+		const body = await res.json();
+		console.log("body in model-reg::::", body);
+
 		return res;
 
 		// return NextResponse.json({

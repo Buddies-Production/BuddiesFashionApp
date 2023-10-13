@@ -33,6 +33,8 @@ export default function RegistrationSuccessful() {
 
 		const body = await res.json();
 
+		console.log("body in event-reg page:", body);
+
 		if (body.code === "PAYMENT_SUCCESS") {
 			setPaymentStatus(
 				"Congratulations your payment has been successful! We will get in touch with you soon"
