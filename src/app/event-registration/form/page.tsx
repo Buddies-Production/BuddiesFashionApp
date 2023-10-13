@@ -1265,7 +1265,7 @@ const Form = () => {
 								<div className="ml-5">
 									<CustomInput
 										val={modelOfficialDetails.aadhar.id}
-										required={false}
+										required={true}
 										placeholder="Aadhar"
 										type="text"
 										name="aadharID"
@@ -1297,7 +1297,7 @@ const Form = () => {
 										setModelPictures={setModelPictures}
 										pictureShot="aadharFront"
 										setFileSizeError={setFileSizeError}
-										required={true}
+										required={false}
 									/>
 								</div>
 								<div
@@ -1313,7 +1313,7 @@ const Form = () => {
 										setModelPictures={setModelPictures}
 										pictureShot="aadharBack"
 										setFileSizeError={setFileSizeError}
-										required={true}
+										required={false}
 									/>
 								</div>
 							</div>
@@ -1365,7 +1365,7 @@ const Form = () => {
 
 						<div className="flex w-full items-center justify-between mt-5">
 							<p className="whitespace-nowrap font-bold">
-								Close up* :
+								Close up :
 							</p>
 							<div
 								className={clsx(
@@ -1377,7 +1377,7 @@ const Form = () => {
 									setModelPictures={setModelPictures}
 									pictureShot="closeUp"
 									setFileSizeError={setFileSizeError}
-									required={true}
+									required={false}
 								/>
 							</div>
 							<div
@@ -1530,7 +1530,7 @@ const Form = () => {
 						<div className="flex w-full items-center justify-between mt-5">
 							<p className="whitespace-nowrap font-bold">
 								Natural Beauty shot <br />
-								(no make-up)* :
+								(no make-up) :
 							</p>
 							<div
 								className={clsx(
@@ -1542,7 +1542,7 @@ const Form = () => {
 									setModelPictures={setModelPictures}
 									pictureShot="natural"
 									setFileSizeError={setFileSizeError}
-									required={true}
+									required={false}
 								/>
 							</div>
 							<div

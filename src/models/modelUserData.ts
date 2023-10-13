@@ -148,7 +148,7 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 		pictures: {
 			closeUp: {
 				type: String,
-				required: true,
+				required: false,
 			},
 			// midLength: {
 			// 	type: String,
@@ -160,7 +160,7 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 			// },
 			naturalShot: {
 				type: String,
-				required: true,
+				required: false,
 			},
 		},
 		officialDetails: {
@@ -191,7 +191,7 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 				},
 				image: {
 					type: String,
-					required: true,
+					required: false,
 				},
 			},
 		},
