@@ -365,11 +365,7 @@ const Form = () => {
 				"Instagram",
 				modelContactDetails.instagramHandle
 			);
-			const time = new Date();
-			formDataGoogleDocs.append(
-				"RegistrationTime",
-				time as unknown as string
-			);
+			formDataGoogleDocs.append("Location", modelState.audition);
 
 			try {
 				const formRes = await fetch("/api/doc-form", {
