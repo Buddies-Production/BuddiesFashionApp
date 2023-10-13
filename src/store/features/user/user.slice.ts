@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 const INTITIAL_STATE = {
 	userID: "",
 	userTransactionID: "",
+	userEmail: "",
 };
 
 export const user = createSlice({
@@ -15,8 +16,11 @@ export const user = createSlice({
 		setTransactionID(state, action: PayloadAction<string>) {
 			state.userTransactionID = action.payload;
 		},
+		setUserEmail(state, action: PayloadAction<string>) {
+			state.userEmail = action.payload;
+		},
 	},
 });
 
-export const { setUserID, setTransactionID } = user.actions;
+export const { setUserID, setTransactionID, setUserEmail } = user.actions;
 export default user.reducer;

@@ -35,7 +35,11 @@ import Link from "next/link";
 import Payment from "@/app/components/client/Payment/Payment";
 import modelUserData from "@/models/modelUserData";
 import dbConnect from "@/lib/mongodb";
-import { setTransactionID, setUserID } from "@/store/features/user/user.slice";
+import {
+	setTransactionID,
+	setUserEmail,
+	setUserID,
+} from "@/store/features/user/user.slice";
 import { getRequestData } from "@/lib/util";
 
 export interface ModelPictures {
@@ -235,6 +239,7 @@ const Form = () => {
 
 		dispatch(setUserID(userID));
 		dispatch(setTransactionID(userTransctionID));
+		dispatch(setUserEmail(modelContactDetails.email));
 
 		try {
 			const arr = [
