@@ -51,15 +51,38 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
 	try {
-		const body = await req.json();
+		const { captcha, formBody } = await req.json();
+
+		console.log("formBody:", formBody);
+		console.log("captcha:", captcha);
+
+		const googleResponse = await fetch(
+			`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${captcha}`,
+			{
+				method: "POST",
+			}
+		);
+
+		console.log("googleResponse:", googleResponse.statusText);
 
 		await dbConnect();
-		const res = await ModelSchema.create(body);
+		await ModelSchema.create(formBody);
 
-		return NextResponse.json({
-			message: "Data saved",
-			success: true,
-		});
+		if (googleResponse.statusText === "OK") {
+			return NextResponse.json({
+				message: "Form submitted",
+				success: true,
+			});
+		} else {
+			return NextResponse.json({
+				message: "Captcha validation failed",
+				success: true,
+			});
+		}
+		// return NextResponse.json({
+		// 	message: "Data saved",
+		// 	success: true,
+		// });
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });
 	}

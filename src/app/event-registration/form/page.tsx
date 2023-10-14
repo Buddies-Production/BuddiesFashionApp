@@ -3,8 +3,9 @@
 import clsx from "clsx";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { BackButton, CrossIcon } from "@/app/components/server";
 import {
@@ -63,6 +64,13 @@ export interface ModelPictures {
 }
 
 const Form = () => {
+	// Captcha
+	const captchaReference = useRef<any>(null);
+	const [captchaStatus, setCaptchaStatus] = useState({
+		success: false,
+		message: "",
+	});
+
 	const dispatch = useDispatch<AppDispatch>();
 
 	const [loader, setLoader] = useState(false);
@@ -229,6 +237,9 @@ const Form = () => {
 	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
+		const captcha = captchaReference.current.getValue();
+		captchaReference.current.reset();
+
 		setLoader(true);
 
 		const userID = uuidv4();
@@ -269,65 +280,68 @@ const Form = () => {
 				);
 			}
 
+			const formBody = {
+				uid: {
+					userID: userID,
+					userTransactionID: userTransctionID,
+				},
+				userName: {
+					firstName: modelName.firstName,
+					middleName: modelName.middleName,
+					lastName: modelName.lastName,
+				},
+				contactDetails: {
+					mobileNumber: parseInt(modelContactDetails.mobileNumber),
+					alternateMobileNumber: parseInt(
+						modelContactDetails.alternateMobileNumber
+					),
+					email: modelContactDetails.email,
+				},
+				dateOfBirth: {
+					day: modelDateInputs.day,
+					month: modelDateInputs.month,
+					year: modelDateInputs.year,
+					age: modelAge,
+				},
+				gender: modelPhysical.gender,
+				state: {
+					birth: modelState.birth,
+					current: modelState.current,
+					audition: modelState.audition,
+				},
+				mode: modelAuditionMode,
+				height: {
+					feet: modelPhysical.feet,
+					inches: modelPhysical.inches,
+				},
+				pictures: {
+					closeUp: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.closeUp?.name}`,
+					naturalShot: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.naturalShot?.name}`,
+				},
+				officialDetails: {
+					pancard: {
+						id: modelOfficialDetails.pancard.id,
+						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.pancard.image?.name}`,
+					},
+					passport: {
+						id: modelOfficialDetails.passport.id,
+						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.passport.image?.name}`,
+					},
+					aadhar: {
+						id: modelOfficialDetails.aadhar.id,
+						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.aadhar.image?.name}`,
+					},
+				},
+			};
+
 			const res = await fetch("/api/model-registration", {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json",
 				},
 				body: JSON.stringify({
-					uid: {
-						userID: userID,
-						userTransactionID: userTransctionID,
-					},
-					userName: {
-						firstName: modelName.firstName,
-						middleName: modelName.middleName,
-						lastName: modelName.lastName,
-					},
-					contactDetails: {
-						mobileNumber: parseInt(
-							modelContactDetails.mobileNumber
-						),
-						alternateMobileNumber: parseInt(
-							modelContactDetails.alternateMobileNumber
-						),
-						email: modelContactDetails.email,
-					},
-					dateOfBirth: {
-						day: modelDateInputs.day,
-						month: modelDateInputs.month,
-						year: modelDateInputs.year,
-						age: modelAge,
-					},
-					gender: modelPhysical.gender,
-					state: {
-						birth: modelState.birth,
-						current: modelState.current,
-						audition: modelState.audition,
-					},
-					mode: modelAuditionMode,
-					height: {
-						feet: modelPhysical.feet,
-						inches: modelPhysical.inches,
-					},
-					pictures: {
-						closeUp: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.closeUp?.name}`,
-						naturalShot: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.naturalShot?.name}`,
-					},
-					officialDetails: {
-						pancard: {
-							id: modelOfficialDetails.pancard.id,
-							image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.pancard.image?.name}`,
-						},
-						passport: {
-							id: modelOfficialDetails.passport.id,
-							image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.passport.image?.name}`,
-						},
-						aadhar: {
-							id: modelOfficialDetails.aadhar.id,
-							image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.aadhar.image?.name}`,
-						},
-					},
+					captcha,
+					formBody,
 				}),
 			});
 
@@ -378,6 +392,11 @@ const Form = () => {
 				console.log("Error in google docs submission:", error);
 			}
 
+			const captchaValidation = await res.json();
+			console.log("captchaValidation:", captchaValidation);
+
+			setCaptchaStatus(captchaValidation);
+
 			if (res.ok) {
 				setLoader(false);
 
@@ -407,6 +426,7 @@ const Form = () => {
 					}
 				};
 				handlePayments();
+
 				// setPaymentPageOpen(true);
 			} else {
 				setLoader(false);
@@ -1612,6 +1632,16 @@ const Form = () => {
 									(Terms & conditions)
 								</span>
 							</label>
+						</div>
+
+						<div className="mt-5">
+							<ReCAPTCHA
+								sitekey={
+									"6LcEB5soAAAAAGOyRV93xoUIgRVRfT5eyt9eHT54"
+								}
+								ref={captchaReference}
+							/>
+							<p>{captchaStatus.message}</p>
 						</div>
 
 						<button
