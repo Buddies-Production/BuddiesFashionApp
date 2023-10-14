@@ -17,34 +17,9 @@ export default function RegistrationSuccessful() {
 	);
 	const { x_verify } = getRequestData();
 
-	async function handlePhonePeCheckApi() {
-		const res = await fetch(
-			`/api/model-registration?xverify=${x_verify}&merchantID=${PAYMENT.MERCHANTID}&merchantTransactionID=${userTransactionID}`,
-			{
-				//need to make the url dynamic
-				method: "GET",
-			}
-		);
-
-		const body = await res.json();
-		return body;
-	}
-
-	async function checkApi() {
-		const statusObject = await handlePhonePeCheckApi();
-		console.log(statusObject.message);
-		setPaymentStatus((prev) => {
-			prev = statusObject.message;
-			if (prev == "Your payment is successful.")
-				setRegistrationStatus("successful");
-			else setRegistrationStatus("unsuccessful");
-
-			return prev;
-		});
-	}
 // http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
 	async function updatePaymentStatusDB() {
-		await fetch(
+		const res = await fetch(
 			`/api/model-registration?merchantTransactionID=${userTransactionID}&xverify=${x_verify}`,
 			{
 				method: "PUT",
@@ -54,13 +29,17 @@ export default function RegistrationSuccessful() {
 				body: JSON.stringify({}),
 			}
 		);
+
+		const body = await res.json();
+		setPaymentStatus(body.value.paymentStatus)
+
 	}
 
 	useEffect(() => {
 		//checking the payment status which will be replaced by checking the database for the payment status
-		checkApi();
 		updatePaymentStatusDB();
 	}, []);
+
 
 	return (
 		<div className="h-screen w-screen bg-black flex justify-center items-center">

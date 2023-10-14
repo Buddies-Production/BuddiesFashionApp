@@ -66,6 +66,9 @@ export async function POST(req: NextRequest) {
 // http://localhost:3000/api/model-registration?merchantTransactionID=BU7850590068188110
 
 export async function PUT(req: NextRequest) {
+
+	await dbConnect();
+	
 	const merchantTransactionId = req.nextUrl.searchParams.get(
 		"merchantTransactionID"
 	);
@@ -85,13 +88,12 @@ export async function PUT(req: NextRequest) {
 			},
 		}
 	);
-
 	const body = await res.json();
 	const modelRegistrationStatus = await ModelSchema.findOne({"uid.userTransactionID":merchantTransactionId});
 	// console.log({modelRegistrationStatus}) 
 	const paymentStatus = body.code;
 
-	await dbConnect();
+
 
 	await ModelSchema.updateOne(
 		modelRegistrationStatus, //updating payment status
@@ -120,9 +122,7 @@ export async function PUT(req: NextRequest) {
   	
 	const updatedStatus = await ModelSchema.findOne({"uid.userTransactionID":merchantTransactionId});
 	return NextResponse.json({
-		status: {
 			message: "Payment Status Updated",
 			value: updatedStatus,
-		},
 	});
 }
