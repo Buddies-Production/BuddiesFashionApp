@@ -30,13 +30,11 @@ export default function Footer() {
 				)}
 			>
 				<p className={clsx("mb-2", "lg:mb-3")}>
-					Welcome to Buddies Fashion, where brilliance meets
-					innovation!
+					Welcome to MTV D2R Mr & Miss India Runway Model
 				</p>
-				<p>
-					We are a leading company dedicated to delivering exceptional
-					products and services to cater to your needs.
-				</p>
+				<p>Where brilliance meets innovation!</p>
+				{/* We are a leading company dedicated to delivering exceptional
+					products and services to cater to your needs. */}
 				<div
 					className={clsx(
 						"flex w-full justify-center mt-5",

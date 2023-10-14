@@ -21,7 +21,7 @@ export default function About() {
 	const [isSmallScreen] = useGetSize();
 
 	return (
-		<div className="h-screen w-screen bg-black relative">
+		<div className="bg-black relative">
 			<NavBar />
 			<div className={clsx("px-[30px] py-40", "lg:px-16")}>
 				<div className="w-full flex justify-between items-center">
