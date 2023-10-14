@@ -18,8 +18,8 @@ export default function RegistrationSuccessful() {
 	);
 	// const userTransactionID = "6097fe8d-b79d-4103-a7b1-4e942a219d1e";
 	const userEmail = useAppSelector((state) => state.userReducer.userEmail);
-	console.log("userEmail:", userEmail);
-	console.log("userTransactionID:", userTransactionID);
+	// console.log("userEmail:", userEmail);
+	// console.log("userTransactionID:", userTransactionID);
 	const x_verify = sha256(
 		`/pg/v1/status/${PAYMENT.MERCHANTID}/${userTransactionID}${PAYMENT.SALT_KEY}`
 	);

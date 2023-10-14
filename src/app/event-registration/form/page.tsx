@@ -234,8 +234,8 @@ const Form = () => {
 	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const captcha = captchaReference.current.getValue();
-		captchaReference.current.reset();
+		// const captcha = captchaReference.current.getValue();
+		// captchaReference.current.reset();
 
 		setLoader(true);
 
@@ -337,7 +337,6 @@ const Form = () => {
 					"Content-type": "application/json",
 				},
 				body: JSON.stringify({
-					captcha,
 					formBody,
 				}),
 			});
