@@ -66,10 +66,7 @@ export interface ModelPictures {
 const Form = () => {
 	// Captcha
 	const captchaReference = useRef<any>(null);
-	const [captchaStatus, setCaptchaStatus] = useState({
-		success: false,
-		message: "",
-	});
+	const [captchaStatus, setCaptchaStatus] = useState(false);
 
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -394,8 +391,6 @@ const Form = () => {
 
 			const captchaValidation = await res.json();
 			console.log("captchaValidation:", captchaValidation);
-
-			setCaptchaStatus(captchaValidation);
 
 			if (res.ok) {
 				setLoader(false);
@@ -1634,24 +1629,25 @@ const Form = () => {
 							</label>
 						</div>
 
-						<div className="mt-5">
+						{/* <div className="mt-5">
 							<ReCAPTCHA
-								sitekey={
-									"6LcEB5soAAAAAGOyRV93xoUIgRVRfT5eyt9eHT54"
-								}
+								sitekey="6LcEB5soAAAAAGOyRV93xoUIgRVRfT5eyt9eHT54"
 								ref={captchaReference}
+								onChange={() => setCaptchaStatus(true)}
 							/>
 							<p>{captchaStatus.message}</p>
-						</div>
+						</div> */}
 
 						<button
 							className={clsx(
 								"bg-white text-black mt-5 px-2 border-2 border-white py-2 w-full font-bold",
 								"transition-colors duration-500",
 								"lg:w-[200px]",
+								// captchaStatus &&
 								"hover:border-blue-950 hover:bg-white/70"
 							)}
 							type="submit"
+							// disabled={!captchaStatus}
 						>
 							SUBMIT
 						</button>

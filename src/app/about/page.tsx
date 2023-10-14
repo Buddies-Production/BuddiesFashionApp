@@ -21,7 +21,7 @@ export default function About() {
 	const [isSmallScreen] = useGetSize();
 
 	return (
-		<div className="h-screen w-screen relative">
+		<div className="h-screen w-screen bg-black relative">
 			<NavBar />
 			<div className={clsx("px-[30px] py-40", "lg:px-16")}>
 				<div className="w-full flex justify-between items-center">
@@ -148,7 +148,7 @@ export default function About() {
 								alt="Producer & Director"
 								className={clsx(
 									"w-full h-full rounded-xl cursor-pointer",
-									"lg:w-[200px] lg:h-[270px]"
+									"lg:w-[230px] lg:h-[270px]"
 								)}
 								onClick={() =>
 									window.open(
@@ -162,7 +162,7 @@ export default function About() {
 								alt="Producer & Finance"
 								className={clsx(
 									"rounded-xl cursor-pointer",
-									"lg:w-[230px] lg:h-[280px]"
+									"lg:w-[250px] lg:h-[280px]"
 								)}
 								onClick={() =>
 									window.open(
