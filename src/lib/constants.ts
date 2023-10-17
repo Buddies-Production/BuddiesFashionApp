@@ -31,20 +31,20 @@ export enum PAYMENT {
 export const LOCATION_VENUE_DATE = [
 	{
 		location: "Shrinagar",
-		venue: "TBA",
+		venue: "Hotel Heritage Luxury",
 		date: "15th October",
 		time: "10am to 4pm",
 	},
 	{
 		location: "Jammu",
-		venue: "TBA",
+		venue: "Hotel Lords Inn",
 		date: "16th October",
 		time: "10am to 4pm",
 	},
 	{
 		location: "Delhi NCR",
 		venue: "TBA",
-		date: "22nd October",
+		date: "25th October",
 		time: "10am to 4pm",
 	},
 	{

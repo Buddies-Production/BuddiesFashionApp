@@ -32,7 +32,35 @@ import EthnicGirlOneSecond from "./latest-stories/ethnic/ethnic_girl_1_2nd.jpg";
 import FormalGirlOneSecond from "./latest-stories/formal/formal_girl_1_2nd.jpg";
 // import RampWalkImage from "./landing_rampwalk.jpeg";
 
+// About event
+import AboutEventOne from "./about-event/Screenshot 2023-10-17 at 2.18.56 PM.png";
+import AboutEventTwo from "./about-event/Screenshot 2023-10-17 at 2.21.39 PM.png";
+import AboutEventThree from "./about-event/Screenshot 2023-10-17 at 2.25.04 PM.png";
+import AboutEventFour from "./about-event/Screenshot 2023-10-17 at 2.26.16 PM.png";
+import AboutEventFive from "./about-event/Screenshot 2023-10-17 at 2.35.45 PM.png";
+import AboutEventSix from "./about-event/Screenshot 2023-10-17 at 2.50.16 PM.png";
+import AboutEventSeven from "./about-event/Screenshot 2023-10-17 at 2.51.23 PM.png";
+import AboutEventEight from "./about-event/Screenshot 2023-10-17 at 2.52.47 PM.png";
+import AboutEventNine from "./about-event/Screenshot 2023-10-17 at 6.34.37 PM.png";
+import AboutEventTen from "./about-event/Screenshot 2023-10-17 at 6.48.40 PM.png";
+import AboutEventEleven from "./about-event/Screenshot 2023-10-17 at 6.49.20 PM.png";
+import AboutEventTwelve from "./about-event/Screenshot 2023-10-17 at 6.50.35 PM.png";
+import AboutEventThirteen from "./about-event/Screenshot 2023-10-17 at 6.51.17 PM.png";
+
 export {
+	AboutEventThirteen,
+	AboutEventTwelve,
+	AboutEventEleven,
+	AboutEventTen,
+	AboutEventNine,
+	AboutEventEight,
+	AboutEventSeven,
+	AboutEventSix,
+	AboutEventFive,
+	AboutEventFour,
+	AboutEventThree,
+	AboutEventTwo,
+	AboutEventOne,
 	FormalBoyOneFirst,
 	EthnicGirlOneSecond,
 	FormalGirlOneSecond,

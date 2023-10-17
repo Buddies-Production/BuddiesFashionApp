@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
 	try {
-		const { formBody } = await req.json();
+		const formBody = await req.json();
 
 		console.log("formBody:", formBody);
 		// console.log("captcha:", captcha);

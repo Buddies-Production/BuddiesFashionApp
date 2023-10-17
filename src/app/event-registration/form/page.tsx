@@ -336,9 +336,7 @@ const Form = () => {
 				headers: {
 					"Content-type": "application/json",
 				},
-				body: JSON.stringify({
-					formBody,
-				}),
+				body: JSON.stringify(formBody),
 			});
 
 			const formDataGoogleDocs = new FormData();
@@ -388,8 +386,8 @@ const Form = () => {
 				console.log("Error in google docs submission:", error);
 			}
 
-			const captchaValidation = await res.json();
-			console.log("captchaValidation:", captchaValidation);
+			// const captchaValidation = await res.json();
+			// console.log("captchaValidation:", captchaValidation);
 
 			if (res.ok) {
 				setLoader(false);

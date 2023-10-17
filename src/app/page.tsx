@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { NavBar, Animated, ScrollElement } from "./components/client";
+import { NavBar, Animated } from "./components/client";
 import {
 	LatestStories,
 	BuddiesBanner,
@@ -12,14 +12,11 @@ import {
 	MembersLanding,
 } from "./components/server/";
 
-import {
-	CrownLandingSvg,
-	DateToRememberLogo,
-	LandingBackdrop,
-} from "../../public";
+import { DateToRememberLogo, LandingBackdrop } from "../../public";
 
 import { BrunoAceFont } from "../../font";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -65,7 +62,18 @@ export default function Home() {
 						)}
 					/>
 					<Animated />
-					<div className={clsx("pt-10 text-xs", "lg:text-base")}>
+					<div
+						className={clsx(
+							"pt-10 text-xs flex flex-col items-center",
+							"lg:text-base lg:flex-row"
+						)}
+					>
+						<Link
+							href={"/about-event"}
+							className="text-sm text-black underline underline-offset-2 mb-5 md:text-white lg:mb-0 lg:text-xl lg:mr-10"
+						>
+							What is MTV D2R?
+						</Link>
 						<EventCallToAction />
 					</div>
 				</div>
