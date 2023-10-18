@@ -27,15 +27,12 @@ import {
 	STATES,
 	YEAR,
 } from "@/lib/constants";
-import { CustomInput, FileInput, ImageDialog } from "@/app/components/client";
+import { CustomInput, FileInput } from "@/app/components/client";
 
 // import { setContactDetails } from "@/store/features/model/model.slice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, useAppSelector } from "@/store/store";
-import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
 import Payment from "@/app/components/client/Payment/Payment";
-import modelUserData from "@/models/modelUserData";
-import dbConnect from "@/lib/mongodb";
 import {
 	setTransactionID,
 	setUserEmail,
@@ -1626,25 +1623,25 @@ const Form = () => {
 							</label>
 						</div>
 
-						{/* <div className="mt-5">
+						<div className="mt-5">
 							<ReCAPTCHA
-								sitekey="6LcEB5soAAAAAGOyRV93xoUIgRVRfT5eyt9eHT54"
+								sitekey="6LfVZK4oAAAAAFpGJJBQvO9dduEdP6qfDSXJy8BU"
 								ref={captchaReference}
 								onChange={() => setCaptchaStatus(true)}
 							/>
-							<p>{captchaStatus.message}</p>
-						</div> */}
+							{/* <p>{captchaStatus.message}</p> */}
+						</div>
 
 						<button
 							className={clsx(
 								"bg-white text-black mt-5 px-2 border-2 border-white py-2 w-full font-bold",
 								"transition-colors duration-500",
 								"lg:w-[200px]",
-								// captchaStatus &&
-								"hover:border-blue-950 hover:bg-white/70"
+								captchaStatus &&
+									"hover:border-blue-950 hover:bg-white/70"
 							)}
 							type="submit"
-							// disabled={!captchaStatus}
+							disabled={!captchaStatus}
 						>
 							SUBMIT
 						</button>
