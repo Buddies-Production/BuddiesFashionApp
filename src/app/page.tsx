@@ -64,13 +64,13 @@ export default function Home() {
 					<Animated />
 					<div
 						className={clsx(
-							"pt-10 text-xs flex flex-col items-center",
+							"pt-12 text-xs flex flex-col items-center",
 							"lg:text-base lg:flex-row"
 						)}
 					>
 						<Link
 							href={"/about-event"}
-							className="text-sm text-black underline underline-offset-2 mb-5 md:text-white lg:mb-0 lg:text-xl lg:mr-10"
+							className="ml-5 font-bold text-base text-black underline underline-offset-4 mb-5 md:text-white lg:mb-0 lg:text-xl lg:mr-10"
 						>
 							What is MTV D2R?
 						</Link>
