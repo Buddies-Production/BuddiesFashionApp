@@ -33,13 +33,13 @@ export async function GET(req: NextRequest) {
 		const body = await res.json();
 		console.log("body in model-reg::::", body);
 
-		return res;
+		// return body;
 
-		// return NextResponse.json({
-		// 	success: true,
-		// 	status: 200,
-		// 	message: body,
-		// });
+		return NextResponse.json({
+			success: true,
+			status: 200,
+			message: body,
+		});
 	} catch (error) {
 		return NextResponse.json({
 			success: false,
@@ -96,36 +96,36 @@ export async function PUT(req: NextRequest) {
 		"merchantTransactionID"
 	);
 
-	const sha = sha256(
-		`/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}${PAYMENT.SALT_KEY}`
-	);
-	const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
-	const res = await fetch(
-		`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}`,
-		{
-			//need to make the url dynamic
-			method: "GET",
-			headers: {
-				accept: "application/json",
-				"Content-Type": "application/json",
-				"X-VERIFY": x_verify,
-				"X-MERCHANT-ID": `${PAYMENT.MERCHANTID}`,
-			},
-		}
-	);
+	// const sha = sha256(
+	// 	`/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}${PAYMENT.SALT_KEY}`
+	// );
+	// const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
+	// const res = await fetch(
+	// 	`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${merchantTransactionId}`,
+	// 	{
+	// 		//need to make the url dynamic
+	// 		method: "GET",
+	// 		headers: {
+	// 			accept: "application/json",
+	// 			"Content-Type": "application/json",
+	// 			"X-VERIFY": x_verify,
+	// 			"X-MERCHANT-ID": `${PAYMENT.MERCHANTID}`,
+	// 		},
+	// 	}
+	// );
 
-	const body = await res.json();
+	// const body = await res.json();
 	const modelRegistrationStatus = await ModelSchema.findOne({
 		"uid.userTransactionID": merchantTransactionId,
 	});
 	// console.log({modelRegistrationStatus})
-	const paymentStatus = body.code;
+	// const paymentStatus = body.code;
 
 	await dbConnect();
 
 	await ModelSchema.updateOne(
 		modelRegistrationStatus, //updating payment status
-		{ $set: { paymentStatus: paymentStatus } }
+		{ $set: { paymentStatus: "PAYMENT_SUCCESSFUL" } }
 	);
 
 	//send the mail with the status to the user , uncomment this to actually send the mail
@@ -150,9 +150,7 @@ export async function PUT(req: NextRequest) {
 		"uid.userTransactionID": merchantTransactionId,
 	});
 	return NextResponse.json({
-		status: {
-			message: "Payment Status Updated",
-			value: updatedStatus,
-		},
+		message: "Payment Status Updated",
+		value: updatedStatus,
 	});
 }

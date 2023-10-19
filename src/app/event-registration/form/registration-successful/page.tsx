@@ -16,8 +16,9 @@ export default function RegistrationSuccessful() {
 	const userTransactionID = useAppSelector(
 		(state) => state.userReducer.userTransactionID
 	);
-	// const userTransactionID = "6097fe8d-b79d-4103-a7b1-4e942a219d1e";
 	const userEmail = useAppSelector((state) => state.userReducer.userEmail);
+	// const userEmail = "manishdoley23@gmail.com";
+	// const userTransactionID = "6097fe8d-b79d-4103-a7b1-4e942a219d1e";
 	// console.log("userEmail:", userEmail);
 	// console.log("userTransactionID:", userTransactionID);
 	const x_verify = sha256(
@@ -34,25 +35,29 @@ export default function RegistrationSuccessful() {
 
 		const body = await res.json();
 
-		console.log("body in event-reg page:", body);
-
-		if (body.code === "PAYMENT_SUCCESS") {
+		if (body.success) {
 			setPaymentStatus(
 				"Congratulations your payment has been successful! We will get in touch with you soon"
 			);
+			await fetch(`/api/mail?email=${userEmail}`, {
+				method: "GET",
+			});
+
 			await fetch(
-				`/api/mail?email=${userEmail}&paymentStatus=${body.message}`,
+				`/api/model-registration?merchantTransactionID=${userTransactionID}&xverify=${x_verify}`,
 				{
-					method: "GET",
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json",
+					},
+					body: JSON.stringify({}),
 				}
 			);
 		} else {
 			setPaymentStatus(
-				"There has been some error with the payment. Please try again"
+				"There has been some error with the payment. Please try again or contact our helpline numbers +91 93101-70380, +91 78278-01756"
 			);
 		}
-
-		return body;
 	}
 
 	// async function checkApi() {
@@ -121,10 +126,10 @@ export default function RegistrationSuccessful() {
 							"lg:text-2xl"
 						)}
 					>
-						{/* <p className="px-20 lg:px-10">{paymentStatus}</p> */}
-						<p className="px-20 lg:px-10">
+						<p className="px-20 lg:px-10">{paymentStatus}</p>
+						{/* <p className="px-20 lg:px-10">
 							Payment successful! We will contact you soon
-						</p>
+						</p> */}
 						<div className="mt-5 lg:mt-10">
 							<Link
 								className="bg-white px-5 py-3 text-black font-bold"
