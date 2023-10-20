@@ -8,9 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import {
+	BuddiesLogo,
 	BurgerMenu,
 	CrossSvg,
-	DateToRememberLogo,
 	FashionEventLogo,
 } from "../../../../public";
 import { BookAntFont } from "../../../../font";
@@ -47,6 +47,16 @@ const NavBar = () => {
 					className={clsx(
 						"absolute left-5 top-5 h-20 w-32",
 						"lg:h-24 lg:left-10 lg:w-36"
+					)}
+				/>
+			</Link>
+			<Link href={"https://www.buddiesproductions.com/"}>
+				<Image
+					src={BuddiesLogo}
+					alt="Buddies Productions"
+					className={clsx(
+						"absolute right-[30%] top-11 h-12 w-20",
+						"lg:h-20 lg:w-36 lg:right-10"
 					)}
 				/>
 			</Link>
