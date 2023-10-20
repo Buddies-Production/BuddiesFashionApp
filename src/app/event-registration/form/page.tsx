@@ -70,6 +70,10 @@ const Form = () => {
 	const [loader, setLoader] = useState(false);
 	const [paymentsPageOpen, setPaymentPageOpen] = useState(false);
 	const [errorPage, setErrorPage] = useState(false);
+	const [contactNumberLimit, setContactNumberLimit] = useState({
+		show: false,
+		text: "",
+	});
 	// const [goToPayments, setGotoPayments] = useState(false);
 
 	const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
@@ -175,21 +179,47 @@ const Form = () => {
 
 	const handleNumberInput = (
 		e: React.ChangeEvent<HTMLInputElement>,
-		numberType: "mobileNumber" | "alternateMobileNumber"
+		numberType: "mobileNumber" | "alternateMobileNumber" | "aadhar"
 	) => {
 		const inputValue = e.target.value;
 
-		// if (inputValue.length > 10) {
-		// 	setModelContactDetails((prevData) => ({
-		// 		...prevData,
-		// 		[numberType]: inputValue.slice(0, 10),
-		// 	}));
-		// } else {
-		setModelContactDetails((prevData) => ({
-			...prevData,
-			[numberType]: inputValue,
-		}));
-		// }
+		if (
+			numberType === "mobileNumber" ||
+			numberType === "alternateMobileNumber"
+		) {
+			if (inputValue.length > 10) {
+				setModelContactDetails((prevData) => ({
+					...prevData,
+					[numberType]: inputValue.slice(0, 10),
+				}));
+			} else {
+				setModelContactDetails((prevData) => ({
+					...prevData,
+					[numberType]: inputValue,
+				}));
+			}
+			return;
+		}
+
+		if (numberType === "aadhar") {
+			if (inputValue.length > 12) {
+				setModelOfficialDetails((prevData) => ({
+					...prevData,
+					aadhar: {
+						...prevData.aadhar,
+						id: inputValue.slice(0, 12),
+					},
+				}));
+			} else {
+				setModelOfficialDetails((prevData) => ({
+					...prevData,
+					aadhar: {
+						...prevData.aadhar,
+						id: inputValue,
+					},
+				}));
+			}
+		}
 	};
 
 	const focusImage = (imageType: number) => {
@@ -230,6 +260,54 @@ const Form = () => {
 
 	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (modelContactDetails.mobileNumber.length < 10) {
+			setContactNumberLimit({
+				show: true,
+				text: "Please re-check your mobile number",
+			});
+			return;
+		} else if (modelContactDetails.alternateMobileNumber.length < 10) {
+			setContactNumberLimit({
+				show: true,
+				text: "Please re-check your alternate mobile number",
+			});
+			return;
+		} else if (modelOfficialDetails.aadhar.id.length < 12) {
+			setContactNumberLimit({
+				show: true,
+				text: "Please re-check your aadhar id",
+			});
+			return;
+		} else {
+			const emailError = modelContactDetails.email;
+			let findFirst = null;
+			let findSecond = null;
+			for (let i = 0; i < emailError.length; ++i) {
+				if (emailError[i] === "@") {
+					findFirst = i;
+				}
+				if (emailError[i] === ".") {
+					findSecond = i;
+				}
+			}
+
+			if (findFirst === null || findSecond === null) {
+				setContactNumberLimit({
+					show: true,
+					text: "Please re-check your email",
+				});
+				return;
+			}
+
+			if (findSecond - findFirst < 4) {
+				setContactNumberLimit({
+					show: true,
+					text: "Please re-check your email",
+				});
+				return;
+			}
+		}
 
 		// const captcha = captchaReference.current.getValue();
 		// captchaReference.current.reset();
@@ -452,6 +530,31 @@ const Form = () => {
 
 	return (
 		<div className={clsx("font-sans bg-black relative px-3 py-28")}>
+			{contactNumberLimit.show && (
+				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
+					<div
+						className={clsx(
+							"border border-white tracking-wide relative h-[30%] w-[80%] bg-black rounded-md text-center flex items-center justify-center px-5",
+							"sm:text-sm",
+							"lg:text-2xl lg:h-[40%] lg:w-[40%]"
+						)}
+					>
+						<CrossIcon
+							onClick={() =>
+								setContactNumberLimit({
+									show: false,
+									text: "",
+								})
+							}
+							className="absolute top-5 right-5 text-white cursor-pointer h-10 w-10"
+						/>
+						<p>
+							{contactNumberLimit.text}
+							{/* Please re-check your email */}
+						</p>
+					</div>
+				</div>
+			)}
 			{fileSizeError && (
 				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
 					<div
@@ -663,20 +766,24 @@ const Form = () => {
 							discretion.
 							<br />
 							<br />
+							<span className="font-bold">2.</span> Registration
+							fees for the audition round is ₹1000
+							<br />
+							<br />
 							<span className="font-bold">
-								2. Eligibility Criteria:
+								3. Eligibility Criteria:
 							</span>{" "}
 							<br />
 							-For an applicant who recognises themselves as
 							female, age should be between (18 – 27 years as of
-							31st December 2024) & 5’3” and above in height.
+							31st December 2023) & 5’3” and above in height.
 							<br /> -For an applicant who recognises themselves
 							as male, age should be between (18 – 27 years as of
-							31st December 2024) & 5’9” and above in height.
+							31st December 2023) & 5’9” and above in height.
 							<br />
 							<br />
 							<span className="font-bold">
-								3. Document Requirements:
+								4. Document Requirements:
 							</span>{" "}
 							<br />- Nationality Proof: Passport (preferred) or
 							Aadhar Card. OCI applicants require an OCI card.{" "}
@@ -687,7 +794,7 @@ const Form = () => {
 							<br />
 							<br />
 							<span className="font-bold">
-								4. Marital Status and Parenthood:
+								5. Marital Status and Parenthood:
 							</span>{" "}
 							<br />- Applicants should not have been married,
 							undergone any marriage ceremony, or become parents.{" "}
@@ -695,116 +802,116 @@ const Form = () => {
 							pregnant.
 							<br />
 							<br />
-							<span className="font-bold">5.</span> Applicants
+							<span className="font-bold">6.</span> Applicants
 							must be bona fide Indian citizens, holding valid
 							Indian passports, and residing in India as per
 							applicable laws.
 							<br />
 							<br />
-							<span className="font-bold">6.</span> Applicants or
+							<span className="font-bold">7.</span> Applicants or
 							their immediate families should not be related to
 							employees of MTV, Viacom18 Media, contest sponsors,
 							subcontractors, or judges. Any such relation must be
 							disclosed.
 							<br />
 							<br />
-							<span className="font-bold">7.</span> If under a
+							<span className="font-bold">8.</span> If under a
 							commercial contract with a modeling agency during
 							auditions, applicants must declare it via email
 							before auditioning.
 							<br />
 							<br />
-							<span className="font-bold">8.</span> Once
+							<span className="font-bold">9.</span> Once
 							shortlisted, applicants cannot enter into any other
 							commercial contract or pageant without prior
 							disclosure to the Organization.
 							<br />
 							<br />
-							<span className="font-bold">9.</span> The Organizer
+							<span className="font-bold">10.</span> The Organizer
 							is not responsible for application delays or
 							non-receipt for any reason.
 							<br />
 							<br />
-							<span className="font-bold">10.</span> Applicants
+							<span className="font-bold">11.</span> Applicants
 							should not have represented any country other than
 							India in any contest and must disclose such
 							participation.
 							<br />
 							<br />
-							<span className="font-bold">11.</span> Applicants
+							<span className="font-bold">12.</span> Applicants
 							must participate in a disciplined and diligent
 							manner as per the audition schedule.
 							<br />
 							<br />
-							<span className="font-bold">12.</span> Any requested
+							<span className="font-bold">13.</span> Any requested
 							applicant information must be shared with the
 							Organization immediately.
 							<br />
 							<br />
-							<span className="font-bold">13.</span> The Organizer
+							<span className="font-bold">14.</span> The Organizer
 							is not responsible for sponsors not fulfilling
 							promised prizes.
 							<br />
 							<br />
-							<span className="font-bold">14.</span> The Organizer
+							<span className="font-bold">15.</span> The Organizer
 							is not responsible for any participant loss or
 							physical injury during the event. Participants
 							attend at their own risk.
 							<br />
 							<br />
-							<span className="font-bold">15.</span> Incorrect
+							<span className="font-bold">16.</span> Incorrect
 							information may result in disqualification, whether
 							discovered before, during, or after participation.
 							<br />
 							<br />
-							<span className="font-bold">16.</span> Judges&apos;
+							<span className="font-bold">17.</span> Judges&apos;
 							decisions are final, and applicants cannot question
 							them on any platform.
 							<br />
 							<br />
-							<span className="font-bold">17.</span> Applicants
+							<span className="font-bold">18.</span> Applicants
 							cannot disclose screening or judging process details
 							or contact judges during the process.
 							<br />
 							<br />
-							<span className="font-bold">18.</span> Applicants
+							<span className="font-bold">19.</span> Applicants
 							must be in good health, have a sound mind, and
 							possess good moral character to participate.
 							<br />
 							<br />
-							<span className="font-bold">19.</span> Applicants
+							<span className="font-bold">20.</span> Applicants
 							should not have any criminal or civil cases
 							registered against them.
 							<br />
 							<br />
-							<span className="font-bold">20.</span> Event
+							<span className="font-bold">21.</span> Event
 							schedule and qualification rounds are subject to
 							change at the Organizer&apos;s discretion.
 							<br />
 							<br />
-							<span className="font-bold">21.</span> State winners
+							<span className="font-bold">22.</span> State winners
 							must sign the legal contract with the Organization
 							within 24-48 hours of receiving it.
 							<br />
 							<br />
-							<span className="font-bold">22.</span> OCI
+							<span className="font-bold">23.</span> OCI
 							cardholders are eligible for the 2nd runner-up title
 							only.
 							<br />
 							<br />
-							<span className="font-bold">23.</span> The Organizer
+							<span className="font-bold">24.</span> The Organizer
 							is not responsible for the non-completion or
 							non-occurrence of the event.
 							<br />
 							<br />
-							<span className="font-bold">24.</span> In case of
+							<span className="font-bold">25.</span> In case of
 							disputes, the Organizer’s decisions are final, and
 							the courts of Uttar Pradesh have jurisdiction.
 							<br />
 							<br />
-							<span className="font-bold">25.</span> If due to any
-							circumstances we are not able to reach your city,
-							auditions will be taken online
+							<span className="font-bold">26.</span> If due to any
+							circumstances after paying the ₹1000 we are not able
+							to reach your city, auditions will be taken online
 							<br />
 							<br />
 							For further information or clarifications, please
@@ -1154,6 +1261,7 @@ const Form = () => {
 							</div>
 						</div>
 
+						{/* Contact Details */}
 						<div className="mt-10">
 							<p className="font-bold">Contact Details</p>
 							<div className="text-black w-full flex flex-wrap justify-start mt-3">
@@ -1206,7 +1314,7 @@ const Form = () => {
 							<div className="text-black w-full flex justify-start mt-3">
 								<CustomInput
 									val={modelContactDetails.instagramHandle}
-									required
+									required={false}
 									placeholder="Instagram Profile"
 									type="text"
 									name="instagramProfile"
@@ -1220,7 +1328,7 @@ const Form = () => {
 							</div>
 						</div>
 
-						{/* Uncomment this */}
+						{/* Official Details */}
 						<div className="mt-10">
 							<p className="font-bold">Official Details</p>
 							<p className="font-extralight mt-1">
@@ -1272,18 +1380,10 @@ const Form = () => {
 										val={modelOfficialDetails.aadhar.id}
 										required={true}
 										placeholder="Aadhar"
-										type="text"
+										type="tel"
 										name="aadharID"
 										onChange={(e) =>
-											setModelOfficialDetails(
-												(prevData) => ({
-													...prevData,
-													aadhar: {
-														...prevData.passport,
-														id: e.target.value,
-													},
-												})
-											)
+											handleNumberInput(e, "aadhar")
 										}
 									/>
 								</div>
@@ -1337,7 +1437,7 @@ const Form = () => {
 												(prevData) => ({
 													...prevData,
 													pancard: {
-														...prevData.passport,
+														...prevData.pancard,
 														id: e.target.value,
 													},
 												})
@@ -1370,7 +1470,7 @@ const Form = () => {
 
 						<div className="flex w-full items-center justify-between mt-5">
 							<p className="whitespace-nowrap font-bold">
-								Close up :
+								Close up* :
 							</p>
 							<div
 								className={clsx(
@@ -1382,7 +1482,7 @@ const Form = () => {
 									setModelPictures={setModelPictures}
 									pictureShot="closeUp"
 									setFileSizeError={setFileSizeError}
-									required={false}
+									required={true}
 								/>
 							</div>
 							<div
@@ -1535,7 +1635,7 @@ const Form = () => {
 						<div className="flex w-full items-center justify-between mt-5">
 							<p className="whitespace-nowrap font-bold">
 								Natural Beauty shot <br />
-								(no make-up) :
+								(no make-up)* :
 							</p>
 							<div
 								className={clsx(
@@ -1547,7 +1647,7 @@ const Form = () => {
 									setModelPictures={setModelPictures}
 									pictureShot="natural"
 									setFileSizeError={setFileSizeError}
-									required={false}
+									required={true}
 								/>
 							</div>
 							<div
@@ -1598,7 +1698,7 @@ const Form = () => {
 							<Payment />
 						</div> */}
 
-						<div className="flex items-center mt-10">
+						<div className="flex items-start mt-10">
 							<input
 								type="checkbox"
 								className="outline-none cursor-pointer"
@@ -1607,18 +1707,23 @@ const Form = () => {
 							/>
 							<label
 								className={clsx(
-									"pl-3 font-bold text-sm",
+									"pl-3 font-bold text-sm -mt-2",
 									"lg:text-base"
 								)}
 							>
-								I agree to terms and conditions{" "}
+								I agree to all the rules and regulations stated
+								on the application: These Rules and Regulations
+								are subject to modification, as needed, without
+								prior notice. MTV D2R Mr & Miss India Runway
+								Model reserves the right to make said
+								modifications at its sole discretion.{" "}
 								<span
-									className="font-normal cursor-pointer"
+									className="font-normal cursor-pointer text-red-500 hover:text-red-600"
 									onClick={() => {
 										setShowTermsAndConditions(true);
 									}}
 								>
-									(Terms & conditions)
+									(Read all Terms & Conditions){" "}
 								</span>
 							</label>
 						</div>

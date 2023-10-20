@@ -90,6 +90,7 @@ const FileInput = (props: {
 								image: file,
 							},
 						}));
+						break;
 					default:
 						props.setModelPictures((prevState) => ({
 							...prevState,
