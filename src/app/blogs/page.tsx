@@ -30,7 +30,7 @@ export default function Blogs() {
 				<div className="flex flex-col items-center justify-center h-96">
 					<div
 						className={clsx(
-							"w-full flex items-center justify-between border border-white",
+							"w-full flex items-center justify-between border border-white px-5 py-3",
 							"lg:py-10"
 						)}
 					>
@@ -63,11 +63,11 @@ export default function Blogs() {
 								"https://medium.com/@d2rmrmissindia/the-models-toolkit-for-success-grooming-charisma-and-health-643d1926309c"
 							}
 							className={clsx(
-								"text-center bg-white text-black px-3 py-2 text-xs rounded",
-								"lg:text-2xl"
+								"text-center bg-white text-black px-2 py-1 text-xs rounded",
+								"lg:text-2xl lg:px-3"
 							)}
 						>
-							Click to check it out
+							Click here
 						</Link>
 					</div>
 				</div>
