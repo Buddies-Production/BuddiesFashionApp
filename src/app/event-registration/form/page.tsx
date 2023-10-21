@@ -324,6 +324,8 @@ const Form = () => {
 		dispatch(setTransactionID(userTransctionID));
 		dispatch(setUserEmail(modelContactDetails.email));
 
+		metaConversionsApi();
+
 		try {
 			const arr = [
 				modelPictures.aadhar.imageFront,
@@ -502,6 +504,29 @@ const Form = () => {
 		} catch (error) {
 			console.log("ERROR IN HANDLE SUBMIT:", error);
 		}
+	};
+
+	const metaConversionsApi = async () => {
+		const data = {
+			data: [
+				{
+					event_name: "Registered",
+					event_time: Date.now(),
+					action_source: "website",
+				},
+			],
+		};
+
+		await fetch(
+			`https://graph.facebook.com/v1/3241007569525483/events?access_token=EAAWn01ZCV1ZBoBO4BzycEVDRrvSeBhxLPGNaKgciKE6ZAQu6bAzzk7HavJXK7YTPZCuPUBpsz5oZBAzFyUVSk6IUrER0QfSOUUXrOYB7wBuA1JdsG5l3d8sOvcFehWY9IT1Clun6u58YMpIYx4I5ElrIPWoMP4YR0PNZCHL8p7BMIZB9ut9GzRVW4yeAdsupZAcfRgZDZD`,
+			{
+				method: "POST",
+				body: JSON.stringify(data),
+			}
+		);
+
+		// const body = await res.json();
+		// console.log("body:::", body);
 	};
 
 	useEffect(() => {
@@ -1736,6 +1761,14 @@ const Form = () => {
 							/>
 							{/* <p>{captchaStatus.message}</p> */}
 						</div>
+
+						{/* <button
+							className="bg-white text-black p-5"
+							onClick={metaConversionsApi}
+							type="button"
+						>
+							META CLICK
+						</button> */}
 
 						<button
 							className={clsx(
