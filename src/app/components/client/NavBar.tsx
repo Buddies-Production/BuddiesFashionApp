@@ -139,6 +139,16 @@ const NavBar = () => {
 				>
 					Contact
 				</Link>
+				<Link
+					href="/blogs"
+					className={clsx(
+						"whitespace-nowrap",
+						"cursor-pointer w-[50px]",
+						"hover:font-bold"
+					)}
+				>
+					Blogs
+				</Link>
 			</div>
 
 			{/* Mobile Navbar */}
@@ -183,6 +193,9 @@ const NavBar = () => {
 					</Link>
 					<Link href="/contact-us" className="cursor-pointer">
 						Contact
+					</Link>
+					<Link href="/blogs" className="cursor-pointer">
+						Blogs
 					</Link>
 				</div>
 			</div>

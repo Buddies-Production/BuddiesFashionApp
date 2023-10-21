@@ -46,8 +46,10 @@ import AboutEventTen from "./about-event/Screenshot 2023-10-17 at 6.48.40 PM.png
 import AboutEventEleven from "./about-event/Screenshot 2023-10-17 at 6.49.20 PM.png";
 import AboutEventTwelve from "./about-event/Screenshot 2023-10-17 at 6.50.35 PM.png";
 import AboutEventThirteen from "./about-event/Screenshot 2023-10-17 at 6.51.17 PM.png";
+import MediumLogoSvg from "./medium_logo.svg";
 
 export {
+	MediumLogoSvg,
 	AboutEventThirteen,
 	AboutEventTwelve,
 	AboutEventEleven,
