@@ -35,11 +35,19 @@ export async function GET(req: NextRequest) {
 
 		// return body;
 
-		return NextResponse.json({
-			success: true,
-			status: 200,
-			message: body,
-		});
+		if (body.success) {
+			return NextResponse.json({
+				success: true,
+				status: 200,
+				message: body,
+			});
+		} else {
+			return NextResponse.json({
+				success: false,
+				status: 400,
+				message: body,
+			});
+		}
 	} catch (error) {
 		return NextResponse.json({
 			success: false,

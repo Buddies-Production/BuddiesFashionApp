@@ -11,7 +11,10 @@ import { PAYMENT } from "@/lib/constants";
 
 export default function RegistrationSuccessful() {
 	const [loader, setLoader] = useState(false);
-	const [paymentStatus, setPaymentStatus] = useState("");
+	const [paymentStatus, setPaymentStatus] = useState({
+		text: "",
+		success: false,
+	});
 
 	const userTransactionID = useAppSelector(
 		(state) => state.userReducer.userTransactionID
@@ -36,9 +39,10 @@ export default function RegistrationSuccessful() {
 		const body = await res.json();
 
 		if (body.success) {
-			setPaymentStatus(
-				"Congratulations your payment has been successful! We will get in touch with you soon"
-			);
+			setPaymentStatus({
+				text: "Congratulations your payment has been successful! We will get in touch with you soon",
+				success: true,
+			});
 			await fetch(`/api/mail?email=${userEmail}`, {
 				method: "GET",
 			});
@@ -54,9 +58,10 @@ export default function RegistrationSuccessful() {
 				}
 			);
 		} else {
-			setPaymentStatus(
-				"There has been some error with the payment. Please try again or contact our helpline numbers +91 93101-70380, +91 78278-01756"
-			);
+			setPaymentStatus({
+				text: "There has been some error with the payment. Please try again or contact our helpline numbers +91 93101-70380, +91 78278-01756",
+				success: false,
+			});
 		}
 	}
 
@@ -126,17 +131,26 @@ export default function RegistrationSuccessful() {
 							"lg:text-2xl"
 						)}
 					>
-						<p className="px-20 lg:px-10">{paymentStatus}</p>
+						<p className="px-20 lg:px-10">{paymentStatus.text}</p>
 						{/* <p className="px-20 lg:px-10">
 							Payment successful! We will contact you soon
 						</p> */}
 						<div className="mt-5 lg:mt-10">
-							<Link
-								className="bg-white px-5 py-3 text-black font-bold"
-								href={"/"}
-							>
-								BACK TO HOME
-							</Link>
+							{paymentStatus.success ? (
+								<Link
+									className="bg-white px-5 py-3 text-black font-bold"
+									href={"/"}
+								>
+									BACK TO HOME
+								</Link>
+							) : (
+								<Link
+									className="bg-white px-5 py-3 text-black font-bold"
+									href={"/event-registration/form"}
+								>
+									TRY AGAIN
+								</Link>
+							)}
 						</div>
 					</div>
 				)}
