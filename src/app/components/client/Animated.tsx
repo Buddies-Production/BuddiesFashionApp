@@ -27,7 +27,7 @@ const Animated = () => {
 	}, []);
 
 	return (
-		<>
+		<div className="-mt-10 relative flex flex-col items-center">
 			<p
 				className={clsx(
 					"text-3xl tracking-[20px] translate-x-5 transition-transform duration-1000",
@@ -49,7 +49,7 @@ const Animated = () => {
 			<div className={clsx("flex text-sm", "lg:text-4xl")}>
 				<p
 					className={clsx(
-						"transition-transform duration-1000",
+						"transition-transform duration-1000 text-white font-bold lg:font-normal lg:text-white",
 						subFashion ? "translate-x-0" : "-translate-x-[1000%]"
 					)}
 				>
@@ -57,7 +57,7 @@ const Animated = () => {
 				</p>
 				<p
 					className={clsx(
-						"mx-4 transition-transform duration-500",
+						"mx-4 transition-transform duration-500 text-[#08192D] font-bold lg:font-normal lg:text-white",
 						subFusion ? "scale-100" : "scale-0"
 					)}
 				>
@@ -65,14 +65,14 @@ const Animated = () => {
 				</p>
 				<p
 					className={clsx(
-						"transition-transform duration-1000",
+						"transition-transform duration-1000 text-[#000000] font-bold lg:font-normal lg:text-white",
 						subFiesta ? "translate-x-0" : "translate-x-[1000%]"
 					)}
 				>
 					FIESTA
 				</p>
 			</div>
-		</>
+		</div>
 	);
 };
 

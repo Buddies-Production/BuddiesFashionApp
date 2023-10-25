@@ -49,7 +49,7 @@ export default function Home() {
 				{/* Headers and sub-headers */}
 				<div
 					className={clsx(
-						"z-50 absolute top-[45%] left-1/2 -translate-y-16 -translate-x-1/2 flex flex-col items-center",
+						"z-50 absolute top-[45%] left-1/2 -translate-y-7 -translate-x-1/2 flex flex-col items-center",
 						"lg:-translate-y-[50%]"
 					)}
 				>
@@ -57,8 +57,8 @@ export default function Home() {
 						src={DateToRememberLogo}
 						alt="Date to remember mtv mr and miss india runway logo"
 						className={clsx(
-							"h-[110px] w-[200px] mb-3",
-							"lg:h-[250px] lg:w-[400px] lg:translate-x-0"
+							"h-[160px] w-[200px] mb-3",
+							"lg:h-[300px] lg:w-[400px] lg:translate-x-0"
 						)}
 					/>
 					<Animated />

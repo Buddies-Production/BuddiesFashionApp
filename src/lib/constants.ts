@@ -43,7 +43,7 @@ export const LOCATION_VENUE_DATE = [
 	},
 	{
 		location: "Delhi NCR",
-		venue: "TBA",
+		venue: "Holdiay Inn",
 		date: "28th October",
 		time: "10am to 4pm",
 	},

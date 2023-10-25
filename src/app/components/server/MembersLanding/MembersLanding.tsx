@@ -212,7 +212,7 @@ const SmImageContainer = (props: {
 	name: string;
 }) => {
 	return (
-		<div className="h-[400px] w-[350px] flex flex-col items-center justify-center">
+		<div className="h-[450px] w-[350px] flex flex-col items-center justify-center">
 			<Image
 				src={MohitRaghav}
 				alt="Producer & CEO"
