@@ -15,7 +15,7 @@ import {
 import {
 	CloseUpZoomedInPng,
 	CloseUpZoomedOutPng,
-	FashionEventLogo,
+	DateToRememberLogo,
 	FullLengthZoomedInPng,
 	FullLengthZoomedOutPng,
 	MidLengthZoomedInPng,
@@ -824,7 +824,7 @@ const Form = () => {
 					<div className="w-full flex justify-center">
 						<Image
 							className="w-1/2"
-							src={FashionEventLogo}
+							src={DateToRememberLogo}
 							alt="Buddies Production logo"
 						/>
 					</div>
@@ -860,7 +860,7 @@ const Form = () => {
 					>
 						<Image
 							className={clsx("w-full")}
-							src={FashionEventLogo}
+							src={DateToRememberLogo}
 							alt="Buddies Production logo"
 						/>
 					</div>

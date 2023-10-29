@@ -11,7 +11,7 @@ import {
 	BuddiesLogo,
 	BurgerMenu,
 	CrossSvg,
-	FashionEventLogo,
+	DateToRememberLogo,
 } from "../../../../public";
 import { BookAntFont } from "../../../../font";
 
@@ -42,11 +42,11 @@ const NavBar = () => {
 		>
 			<Link href={"/"}>
 				<Image
-					src={FashionEventLogo}
+					src={DateToRememberLogo}
 					alt="Buddies Production Logo"
 					className={clsx(
-						"absolute left-5 top-5 h-20 w-32",
-						"lg:h-24 lg:left-10 lg:w-36"
+						"absolute left-5 top-5 h-24 w-32",
+						"lg:h-36 lg:w-48 lg:left-10 lg:top-1"
 					)}
 				/>
 			</Link>

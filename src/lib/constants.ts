@@ -111,11 +111,10 @@ export const PREFFERED_AUDITION_CITY = [
 	"Chandigarh",
 	"Lucknow",
 	"Jaipur",
+	"Pune",
 	"Ahmedabad",
 	"Delhi NCR",
-	"Kolkata",
 	"Indore",
-	"Guwahati",
 	"Hyderabad",
 	"Bangalore",
 ];

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { NavBar, Animated } from "./components/client";
 import {
 	LatestStories,
-	BuddiesBanner,
+	WhatIsMtv,
 	SocialLinks,
 	Information,
 	Footer,
@@ -105,8 +105,8 @@ export default function Home() {
 				</div>
 			</div>
 
-			{/* Buddies Banner */}
-			<BuddiesBanner />
+			{/* What is MTV */}
+			<WhatIsMtv />
 
 			<EventsAudition />
 

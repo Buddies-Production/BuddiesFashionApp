@@ -6,7 +6,6 @@ import LandingFb from "./landing_fb.svg";
 import LandingInsta from "./instagram_logo.svg";
 import LandingTwitter from "./landing_twitter.svg";
 import LandingYoutube from "./YoutubeLogo.svg";
-import FashionEventLogo from "./main_logo_bg_rem_new.svg";
 import BurgerMenu from "./burgerMenuSvg.svg";
 import CrossSvg from "./landing_cross.svg";
 import BuddiesLogo from "./buddies_logo.png";
@@ -82,7 +81,6 @@ export {
 	BuddiesLogo,
 	CrossSvg,
 	BurgerMenu,
-	FashionEventLogo,
 	CrownLandingSvg,
 	LandingBackdrop,
 	LandingFb,

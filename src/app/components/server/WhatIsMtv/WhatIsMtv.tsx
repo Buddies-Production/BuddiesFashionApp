@@ -8,13 +8,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-export default function BuddiesBanner() {
+export default function WhatIsMtv() {
 	const swiperRef = useRef<any>();
 
 	return (
 		<div
 			className={clsx(
-				"w-full flex items-center justify-center relative h-[400px] mb-10 border-y border-white",
+				"bg-black w-full flex items-center justify-center relative h-[400px] mb-10 border-y border-white",
 				"lg:h-[600px]"
 			)}
 		>
