@@ -51,7 +51,7 @@ const AboutEvent = () => {
 						disableOnInteraction: false,
 					}}
 					className="mySwiper"
-					speed={3000}
+					speed={500}
 				>
 					<button
 						onClick={() => swiperRef.current.slidePrev()}
@@ -117,7 +117,7 @@ const AboutEvent = () => {
 					<SwiperSlide>
 						<Image src={AboutEventFour} alt="Auditions" />
 					</SwiperSlide>
-					<SwiperSlide>
+					{/* <SwiperSlide>
 						<div className="relative">
 							<Image
 								src={AboutEventFive}
@@ -132,10 +132,10 @@ const AboutEvent = () => {
 								Tentative
 							</p>
 						</div>
-					</SwiperSlide>
-					<SwiperSlide>
+					</SwiperSlide> */}
+					{/* <SwiperSlide>
 						<Image src={AboutEventSix} alt="Judge of the show" />
-					</SwiperSlide>
+					</SwiperSlide> */}
 					<SwiperSlide>
 						<Image src={AboutEventSeven} alt="Selection Process" />
 					</SwiperSlide>

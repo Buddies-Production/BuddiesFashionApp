@@ -49,7 +49,7 @@ export default function MembersLanding() {
 					>
 						Founders
 					</p>
-					{isSmallScreen ? (
+					{/* {isSmallScreen ? (
 						<Swiper
 							spaceBetween={30}
 							centeredSlides={true}
@@ -138,39 +138,42 @@ export default function MembersLanding() {
 								</div>
 							</SwiperSlide>
 						</Swiper>
-					) : (
-						<div
-							className="flex justify-between items-center"
-							style={{
-								fontFamily: cursiveFont.style.fontFamily,
-							}}
-						>
-							<LgImageContainer
-								imgSrc={MohitRaghav}
-								alt="Producer & CEO"
-								instaLink="https://www.instagram.com/mohit.raghav15/"
-								name="Mohit Raghav"
-							/>
-							<LgImageContainer
-								imgSrc={PulkitRaghav}
-								alt="Producer & Creative"
-								instaLink="https://www.instagram.com/raghavpulkit/"
-								name="Pulkit Raghav"
-							/>
-							<LgImageContainer
-								imgSrc={GautamNain}
-								alt="Producer & Director"
-								instaLink="https://www.instagram.com/gautam_nain_official/"
-								name="Gautam Nain"
-							/>
-							<LgImageContainer
-								imgSrc={RahulKhandelwal}
-								alt="Producer & Finance"
-								instaLink="https://www.instagram.com/rahulkhandelwal167/"
-								name="Rahul Khandelwal"
-							/>
-						</div>
-					)}
+					) : ( */}
+					<div
+						className={clsx(
+							"flex justify-between items-center flex-col",
+							"lg:flex-row"
+						)}
+						style={{
+							fontFamily: cursiveFont.style.fontFamily,
+						}}
+					>
+						<LgImageContainer
+							imgSrc={MohitRaghav}
+							alt="Producer & CEO"
+							instaLink="https://www.instagram.com/mohit.raghav15/"
+							name="Mohit Raghav"
+						/>
+						<LgImageContainer
+							imgSrc={PulkitRaghav}
+							alt="Producer & Creative"
+							instaLink="https://www.instagram.com/raghavpulkit/"
+							name="Pulkit Raghav"
+						/>
+						<LgImageContainer
+							imgSrc={GautamNain}
+							alt="Producer & Director"
+							instaLink="https://www.instagram.com/gautam_nain_official/"
+							name="Gautam Nain"
+						/>
+						<LgImageContainer
+							imgSrc={RahulKhandelwal}
+							alt="Producer & Finance"
+							instaLink="https://www.instagram.com/rahulkhandelwal167/"
+							name="Rahul Khandelwal"
+						/>
+					</div>
+					{/* )} */}
 				</div>
 			</div>
 		</div>
@@ -200,7 +203,9 @@ const LgImageContainer = (props: {
 					onClick={() => window.open(props.instaLink, "_blank")}
 				/>
 			</div>
-			<p className="lg:text-3xl text-center">{props.name}</p>
+			<p className="text-xl mb-5 text-center lg:mb-0 lg:text-3xl">
+				{props.name}
+			</p>
 		</div>
 	);
 };

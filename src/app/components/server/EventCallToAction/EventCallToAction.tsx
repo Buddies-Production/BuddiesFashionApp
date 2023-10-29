@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-const EventCallToAction = (props: { text?: string }) => {
+const EventCallToAction = (props: { text?: string; href?: string }) => {
 	return (
 		<Link
-			href="/event-registration"
+			href={props.href ?? "/event-registration"}
 			className={clsx(
 				"relative inline-flex items-center justify-start py-3 overflow-hidden font-semibold text-black transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group pl-4 pr-12"
 				// "lg:text-white"
