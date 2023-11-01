@@ -80,3 +80,18 @@ export const useGetSize = () => {
 
 	return [isSmallScreen, setIsSmallScreen];
 };
+
+export const generateRandom16DigitNumber = () => {
+	// The "BO" prefix
+	const prefix = "BO";
+
+	// Generate 14 random digits
+	const randomDigits = Array.from({ length: 14 }, () =>
+		Math.floor(Math.random() * 10)
+	).join("");
+
+	// Combine the prefix and random digits
+	const randomNumber = prefix + randomDigits;
+
+	return randomNumber;
+};

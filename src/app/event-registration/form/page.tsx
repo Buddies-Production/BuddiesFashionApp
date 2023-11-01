@@ -42,7 +42,7 @@ import {
 	setUserEmail,
 	setUserID,
 } from "@/store/features/user/user.slice";
-import { getRequestData } from "@/lib/util";
+import { generateRandom16DigitNumber, getRequestData } from "@/lib/util";
 
 export interface ModelPictures {
 	closeUp: File | undefined;
@@ -319,7 +319,8 @@ const Form = () => {
 		setLoader(true);
 
 		const userID = uuidv4();
-		const userTransctionID = uuidv4();
+		// const userTransctionID = uuidv4();
+		const userTransctionID = generateRandom16DigitNumber();
 
 		// console.log("userID:", userID);
 		// console.log("userTransctionID:", userTransctionID);
@@ -334,8 +335,6 @@ const Form = () => {
 			const arr = [
 				modelPictures.aadhar.imageFront,
 				modelPictures.aadhar.imageBack,
-				modelPictures.pancard.image,
-				modelPictures.passport.image,
 				modelPictures.closeUp,
 				modelPictures.naturalShot,
 			];
@@ -343,7 +342,7 @@ const Form = () => {
 			const firstName = modelName.firstName;
 			const lastName = modelName.lastName;
 
-			for (let i = 0; i < 6; ++i) {
+			for (let i = 0; i < 4; ++i) {
 				const formData = new FormData();
 				formData.set("file", arr[i] as File);
 
@@ -1192,7 +1191,7 @@ const Form = () => {
 							<p className="font-extralight mt-1">
 								Format: png, jpg and jpeg | Max Size: 5 mb
 							</p>
-							<div className="text-white w-full flex flex-wrap items-center justify-start mt-5">
+							{/* <div className="text-white w-full flex flex-wrap items-center justify-start mt-5">
 								<p className="whitespace-nowrap font-bold">
 									Passport :
 								</p>
@@ -1229,7 +1228,7 @@ const Form = () => {
 										required={false}
 									/>
 								</div>
-							</div>
+							</div> */}
 
 							<div className="text-white w-full flex flex-wrap items-center justify-start mt-7">
 								<p className="font-bold">Aadhar* :</p>
@@ -1281,7 +1280,7 @@ const Form = () => {
 								</div>
 							</div>
 
-							<div className="text-white w-full flex flex-wrap items-center justify-start mt-7">
+							{/* <div className="text-white w-full flex flex-wrap items-center justify-start mt-7">
 								<p className="font-bold">Pancard :</p>
 								<div className="ml-5">
 									<CustomInput
@@ -1316,7 +1315,7 @@ const Form = () => {
 										required={false}
 									/>
 								</div>
-							</div>
+							</div> */}
 						</div>
 
 						{/* Uncomment This */}
