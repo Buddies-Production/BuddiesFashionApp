@@ -1,11 +1,10 @@
-import { PAYMENT } from "@/lib/constants";
+import { PAYMENT_PAY } from "@/lib/constants";
 import dbConnect from "@/lib/mongodb";
 import ModelSchema from "@/models/modelUserData";
 import { NextResponse, NextRequest } from "next/server";
 const client = require("@mailchimp/mailchimp_transactional")(
 	"md-ITAj3bHeRIFp7p1iAqzGbw"
 );
-import { sha256 } from "js-sha256";
 
 export async function GET(req: NextRequest) {
 	try {
@@ -24,7 +23,7 @@ export async function GET(req: NextRequest) {
 				headers: {
 					accept: "application/json",
 					"Content-Type": "application/json",
-					"X-VERIFY": `${xverify + "###" + PAYMENT.SALT_INDEX}`,
+					"X-VERIFY": `${xverify + "###" + PAYMENT_PAY.SALT_INDEX}`,
 					"X-MERCHANT-ID": merchantId as string,
 				},
 			}

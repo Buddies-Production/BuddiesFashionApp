@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/mongodb";
-import { PAYMENT } from "@/lib/constants";
+import { PAYMENT_PAY } from "@/lib/constants";
 import { sha256 } from "js-sha256";
 
 import { NextRequest, NextResponse } from "next/server";
@@ -18,11 +18,11 @@ export async function POST(req: NextRequest) {
 
 	modelRegistrationData.forEach(async (modelData) => {
 		const sha = sha256(
-			`/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}${PAYMENT.SALT_KEY}`
+			`/pg/v1/status/${PAYMENT_PAY.MERCHANTID}/${modelData.uid.userTransactionID}${PAYMENT_PAY.SALT_KEY}`
 		);
-		const x_verify = `${sha}###${PAYMENT.SALT_INDEX}`;
+		const x_verify = `${sha}###${PAYMENT_PAY.SALT_INDEX}`;
 		const res = await fetch(
-			`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT.MERCHANTID}/${modelData.uid.userTransactionID}`,
+			`https://api.phonepe.com/apis/hermes/pg/v1/status/${PAYMENT_PAY.MERCHANTID}/${modelData.uid.userTransactionID}`,
 			{
 				method: "GET",
 				headers: {

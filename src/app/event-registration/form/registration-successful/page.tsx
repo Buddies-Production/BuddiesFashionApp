@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useAppSelector } from "@/store/store";
-import { PAYMENT } from "@/lib/constants";
+import { PAYMENT_PAY } from "@/lib/constants";
 
 export default function RegistrationSuccessful() {
 	const [loader, setLoader] = useState(false);
@@ -25,12 +25,12 @@ export default function RegistrationSuccessful() {
 	// console.log("userEmail:", userEmail);
 	// console.log("userTransactionID:", userTransactionID);
 	const x_verify = sha256(
-		`/pg/v1/status/${PAYMENT.MERCHANTID}/${userTransactionID}${PAYMENT.SALT_KEY}`
+		`/pg/v1/status/${PAYMENT_PAY.MERCHANTID}/${userTransactionID}${PAYMENT_PAY.SALT_KEY}`
 	);
 
 	async function handlePhonePeCheckApi() {
 		const res = await fetch(
-			`/api/model-registration?xverify=${x_verify}&merchantID=${PAYMENT.MERCHANTID}&merchantTransactionID=${userTransactionID}`,
+			`/api/model-registration?xverify=${x_verify}&merchantID=${PAYMENT_PAY.MERCHANTID}&merchantTransactionID=${userTransactionID}`,
 			{
 				method: "GET",
 			}

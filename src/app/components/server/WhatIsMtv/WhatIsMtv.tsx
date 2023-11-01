@@ -16,7 +16,7 @@ export default function WhatIsMtv() {
 
 	return (
 		<>
-			<div className={clsx("px-[30px] py-10", "lg:px-16")}>
+			<div className={clsx("bg-black px-[30px] py-10", "lg:px-16")}>
 				<div className="w-full flex justify-between items-center">
 					<p
 						className={clsx(
