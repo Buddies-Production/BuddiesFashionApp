@@ -16,7 +16,7 @@
 
 // export const PAYMENT_SALT_INDEX = "1";
 
-export enum PAYMENT {
+export enum PAYMENT_PAY {
 	MERCHANTID = "BUDDIESONLINE",
 	// AMOUNT = "100000",
 	AMOUNT = "100",
@@ -26,6 +26,10 @@ export enum PAYMENT {
 	PAYMENT_INSTRUMENT_TYPE = "PAY_PAGE",
 	SALT_KEY = "31a69617-dd30-4f5e-902c-0b663c2a06dc",
 	SALT_INDEX = "1",
+}
+
+export enum PAYMENT_QRCODE {
+	PAYMENT_INSTRUMENT_TYPE = "UPI_QR",
 }
 
 export const LOCATION_VENUE_DATE = [

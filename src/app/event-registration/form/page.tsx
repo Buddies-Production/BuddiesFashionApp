@@ -842,11 +842,6 @@ const Form = () => {
 							title="HEIGHT"
 							text="5’3″ & above (without heels) for women and 5'9 & above for men"
 						/>
-						<EligibilityCriteriaPoints
-							className="mt-5"
-							title="NATIONALITY"
-							text="Indian passport required"
-						/>
 					</div>
 				</div>
 
