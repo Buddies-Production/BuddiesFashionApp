@@ -111,14 +111,12 @@ export const STATES = [
 
 export const PREFFERED_AUDITION_CITY = [
 	"Online",
-	"Jammu & Kashmir",
 	"Dehradun",
 	"Chandigarh",
 	"Lucknow",
 	"Jaipur",
 	"Pune",
 	"Ahmedabad",
-	"Delhi NCR",
 	"Indore",
 	"Hyderabad",
 	"Bangalore",
