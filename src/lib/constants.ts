@@ -109,18 +109,7 @@ export const STATES = [
 	"Puducherry (UT)",
 ];
 
-export const PREFFERED_AUDITION_CITY = [
-	"Online",
-	"Dehradun",
-	"Chandigarh",
-	"Lucknow",
-	"Jaipur",
-	"Pune",
-	"Ahmedabad",
-	"Indore",
-	"Hyderabad",
-	"Bangalore",
-];
+export const PREFFERED_AUDITION_CITY = ["Online", "Dehradun", "Pune"];
 
 export const YEAR = [
 	"1996",
