@@ -150,48 +150,26 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 				type: String,
 				required: false,
 			},
-			// midLength: {
-			// 	type: String,
-			// 	required: true,
-			// },
-			// fullLength: {
-			// 	type: File,
-			// 	required: true,
-			// },
 			naturalShot: {
 				type: String,
 				required: false,
 			},
 		},
 		officialDetails: {
-			pancard: {
-				id: {
-					type: String,
-					required: false,
-				},
-				image: {
-					type: String,
-					required: false,
-				},
-			},
-			passport: {
-				id: {
-					type: String,
-					required: false,
-				},
-				image: {
-					type: String,
-					required: false,
-				},
-			},
 			aadhar: {
 				id: {
 					type: String,
 					required: true,
 				},
 				image: {
-					type: String,
-					required: false,
+					front: {
+						type: String,
+						required: false,
+					},
+					back: {
+						type: String,
+						required: false,
+					},
 				},
 			},
 		},

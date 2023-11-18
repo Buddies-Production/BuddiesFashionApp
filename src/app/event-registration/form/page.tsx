@@ -1,17 +1,36 @@
 "use client";
 
 import clsx from "clsx";
+import { v4 as uuidv4 } from "uuid";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useDispatch } from "react-redux";
 
 import {
 	BackButton,
 	CrossIcon,
 	TermsAndConditions,
 } from "@/app/components/server";
+import { CustomInput, FileInput } from "@/app/components/client";
+
+import {
+	DAY,
+	INCHES,
+	MONTH,
+	PREFFERED_AUDITION_CITY,
+	STATES,
+	YEAR,
+} from "@/lib/constants";
+import { generateRandom16DigitNumber, getRequestData } from "@/lib/util";
+import { AppDispatch } from "@/store/store";
+import {
+	setTransactionID,
+	setUserEmail,
+	setUserID,
+} from "@/store/features/user/user.slice";
+
 import {
 	CloseUpZoomedInPng,
 	CloseUpZoomedOutPng,
@@ -23,26 +42,6 @@ import {
 	NaturalShotZoomedInPng,
 	NaturalShotZoomedOutPng,
 } from "../../../../public";
-import {
-	DAY,
-	INCHES,
-	MONTH,
-	PREFFERED_AUDITION_CITY,
-	STATES,
-	YEAR,
-} from "@/lib/constants";
-import { CustomInput, FileInput } from "@/app/components/client";
-
-// import { setContactDetails } from "@/store/features/model/model.slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
-import Payment from "@/app/components/client/Payment/Payment";
-import {
-	setTransactionID,
-	setUserEmail,
-	setUserID,
-} from "@/store/features/user/user.slice";
-import { generateRandom16DigitNumber, getRequestData } from "@/lib/util";
 
 export interface ModelPictures {
 	closeUp: File | undefined;
@@ -65,20 +64,17 @@ export interface ModelPictures {
 }
 
 const Form = () => {
-	// Captcha
 	const captchaReference = useRef<any>(null);
 	const [captchaStatus, setCaptchaStatus] = useState(false);
 
 	const dispatch = useDispatch<AppDispatch>();
 
 	const [loader, setLoader] = useState(false);
-	const [paymentsPageOpen, setPaymentPageOpen] = useState(false);
 	const [errorPage, setErrorPage] = useState(false);
 	const [contactNumberLimit, setContactNumberLimit] = useState({
 		show: false,
 		text: "",
 	});
-	// const [goToPayments, setGotoPayments] = useState(false);
 
 	const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
 
@@ -153,34 +149,6 @@ const Form = () => {
 		},
 	});
 
-	const [modelOfficialDetails, setModelOfficialDetails] = useState<{
-		pancard: {
-			id: string;
-			image: File | undefined;
-		};
-		passport: {
-			id: string;
-			image: File | undefined;
-		};
-		aadhar: {
-			id: string;
-			image: File | undefined;
-		};
-	}>({
-		pancard: {
-			id: "",
-			image: undefined,
-		},
-		passport: {
-			id: "",
-			image: undefined,
-		},
-		aadhar: {
-			id: "",
-			image: undefined,
-		},
-	});
-
 	const handleNumberInput = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		numberType: "mobileNumber" | "alternateMobileNumber" | "aadhar"
@@ -207,7 +175,7 @@ const Form = () => {
 
 		if (numberType === "aadhar") {
 			if (inputValue.length > 12) {
-				setModelOfficialDetails((prevData) => ({
+				setModelPictures((prevData) => ({
 					...prevData,
 					aadhar: {
 						...prevData.aadhar,
@@ -215,7 +183,7 @@ const Form = () => {
 					},
 				}));
 			} else {
-				setModelOfficialDetails((prevData) => ({
+				setModelPictures((prevData) => ({
 					...prevData,
 					aadhar: {
 						...prevData.aadhar,
@@ -277,7 +245,7 @@ const Form = () => {
 				text: "Please re-check your alternate mobile number",
 			});
 			return;
-		} else if (modelOfficialDetails.aadhar.id.length < 12) {
+		} else if (modelPictures.aadhar.id.length < 12) {
 			setContactNumberLimit({
 				show: true,
 				text: "Please re-check your aadhar id",
@@ -312,9 +280,6 @@ const Form = () => {
 				return;
 			}
 		}
-
-		// const captcha = captchaReference.current.getValue();
-		// captchaReference.current.reset();
 
 		setLoader(true);
 
@@ -396,17 +361,12 @@ const Form = () => {
 					naturalShot: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.naturalShot?.name}`,
 				},
 				officialDetails: {
-					pancard: {
-						id: modelOfficialDetails.pancard.id,
-						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.pancard.image?.name}`,
-					},
-					passport: {
-						id: modelOfficialDetails.passport.id,
-						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.passport.image?.name}`,
-					},
 					aadhar: {
-						id: modelOfficialDetails.aadhar.id,
-						image: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelOfficialDetails.aadhar.image?.name}`,
+						id: modelPictures.aadhar.id,
+						image: {
+							front: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.aadhar.imageFront?.name}`,
+							back: `https://buddies-fashion-model-image-entry.s3.ap-south-1.amazonaws.com/${modelPictures.aadhar.imageBack?.name}`,
+						},
 					},
 				},
 			};
@@ -466,9 +426,6 @@ const Form = () => {
 				console.log("Error in google docs submission:", error);
 			}
 
-			// const captchaValidation = await res.json();
-			// console.log("captchaValidation:", captchaValidation);
-
 			if (res.ok) {
 				setLoader(false);
 
@@ -498,8 +455,6 @@ const Form = () => {
 					}
 				};
 				handlePayments();
-
-				// setPaymentPageOpen(true);
 			} else {
 				setLoader(false);
 				setErrorPage(true);
@@ -527,9 +482,6 @@ const Form = () => {
 				body: JSON.stringify(data),
 			}
 		);
-
-		// const body = await res.json();
-		// console.log("body:::", body);
 	};
 
 	useEffect(() => {
@@ -660,19 +612,6 @@ const Form = () => {
 								REFRESH THE PAGE
 							</button>
 						</div>
-					</div>
-				</div>
-			)}
-			{paymentsPageOpen && (
-				<div className="h-screen w-screen flex justify-center items-center bg-black/70 z-50 fixed top-0">
-					<div
-						className={clsx(
-							"relative h-[60%] w-[60%] bg-black rounded-md flex items-center justify-center",
-							"sm:text-sm",
-							"lg:text-2xl"
-						)}
-					>
-						<Payment />
 					</div>
 				</div>
 			)}
@@ -868,6 +807,7 @@ const Form = () => {
 					</p>
 					<form className="flex flex-col" onSubmit={handleFormSubmit}>
 						<div className={clsx("flex flex-col mt-5", "lg:mt-10")}>
+							{/* Name */}
 							<p className="font-bold">Name* </p>
 							<div className="flex w-full mt-3">
 								<CustomInput
@@ -1061,6 +1001,7 @@ const Form = () => {
 							/>
 						</div>
 
+						{/* Physical Attributes */}
 						<p className="mt-10 font-bold">Physical Attributes</p>
 						<div
 							className={clsx(
@@ -1166,6 +1107,7 @@ const Form = () => {
 							</div>
 						</div>
 
+						{/* Instagram */}
 						<div className="mt-10">
 							<p className="font-bold">Instagram Profile</p>
 							<div className="text-black w-full flex justify-start mt-3">
@@ -1234,7 +1176,7 @@ const Form = () => {
 								<p className="font-bold">Aadhar* :</p>
 								<div className="ml-5">
 									<CustomInput
-										val={modelOfficialDetails.aadhar.id}
+										val={modelPictures.aadhar.id}
 										required={true}
 										placeholder="Aadhar"
 										type="tel"
@@ -1318,7 +1260,7 @@ const Form = () => {
 							</div> */}
 						</div>
 
-						{/* Uncomment This */}
+						{/* Upload Your Photos */}
 						<p className="font-bold mt-10">Upload Your Photos</p>
 						<p className="font-extralight mt-1">
 							Format: png, jpg and jpeg | Dimension: 450px*600px |
@@ -1591,16 +1533,7 @@ const Form = () => {
 								ref={captchaReference}
 								onChange={() => setCaptchaStatus(true)}
 							/>
-							{/* <p>{captchaStatus.message}</p> */}
 						</div>
-
-						{/* <button
-							className="bg-white text-black p-5"
-							onClick={metaConversionsApi}
-							type="button"
-						>
-							META CLICK
-						</button> */}
 
 						<button
 							className={clsx(

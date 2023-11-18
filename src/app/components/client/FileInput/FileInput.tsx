@@ -18,88 +18,85 @@ const FileInput = (props: {
 		let fileType;
 		let fileSize;
 
-		if (file !== undefined) {
-			fileType = file.type;
-			fileSize = file.size;
+		if (file === undefined) return;
 
-			if (
-				fileType !== "image/jpeg" &&
-				fileType !== "image/jpg" &&
-				fileType !== "image/png"
-			) {
-				inputRef.current.value = null;
-				return;
-			}
-
-			if (fileSize > 5 * 1000000) {
-				props.setFileSizeError(true);
-				inputRef.current.value = null;
-				return;
-			} else {
-				switch (props.pictureShot) {
-					case "closeUp":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							closeUp: file,
-						}));
-						break;
-					case "midLength":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							midLength: file,
-						}));
-						break;
-					case "fullLength":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							fullLength: file,
-						}));
-						break;
-					case "passport":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							passport: {
-								...prevState.passport,
-								image: file,
-							},
-						}));
-						break;
-					case "aadharFront":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							aadhar: {
-								...prevState.aadhar,
-								imageFront: file,
-							},
-						}));
-						break;
-					case "aadharBack":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							aadhar: {
-								...prevState.aadhar,
-								imageBack: file,
-							},
-						}));
-						break;
-					case "pancard":
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							pancard: {
-								...prevState.pancard,
-								image: file,
-							},
-						}));
-						break;
-					default:
-						props.setModelPictures((prevState) => ({
-							...prevState,
-							naturalShot: file,
-						}));
-				}
-			}
-		} else {
+		fileType = file.type;
+		fileSize = file.size;
+		if (
+			fileType !== "image/jpeg" &&
+			fileType !== "image/jpg" &&
+			fileType !== "image/png"
+		) {
+			inputRef.current.value = null;
 			return;
+		}
+
+		if (fileSize > 5 * 1000000) {
+			props.setFileSizeError(true);
+			inputRef.current.value = null;
+			return;
+		} else {
+			switch (props.pictureShot) {
+				case "closeUp":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						closeUp: file,
+					}));
+					break;
+				case "midLength":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						midLength: file,
+					}));
+					break;
+				case "fullLength":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						fullLength: file,
+					}));
+					break;
+				case "passport":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						passport: {
+							...prevState.passport,
+							image: file,
+						},
+					}));
+					break;
+				case "aadharFront":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						aadhar: {
+							...prevState.aadhar,
+							imageFront: file,
+						},
+					}));
+					break;
+				case "aadharBack":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						aadhar: {
+							...prevState.aadhar,
+							imageBack: file,
+						},
+					}));
+					break;
+				case "pancard":
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						pancard: {
+							...prevState.pancard,
+							image: file,
+						},
+					}));
+					break;
+				default:
+					props.setModelPictures((prevState) => ({
+						...prevState,
+						naturalShot: file,
+					}));
+			}
 		}
 	};
 
