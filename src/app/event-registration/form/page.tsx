@@ -986,7 +986,7 @@ const Form = () => {
 						</div>
 
 						{/* Preferred mode of Audition */}
-						<div className="w-max mt-5">
+						{/* <div className="w-max mt-5">
 							<p className="mb-3 font-bold">
 								Preferred Mode of Audition*
 							</p>
@@ -999,7 +999,7 @@ const Form = () => {
 								option={["Online", "Offline"]}
 								requiredSection={true}
 							/>
-						</div>
+						</div> */}
 
 						{/* Physical Attributes */}
 						<p className="mt-10 font-bold">Physical Attributes</p>

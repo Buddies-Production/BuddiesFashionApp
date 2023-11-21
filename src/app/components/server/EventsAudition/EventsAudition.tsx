@@ -2,7 +2,6 @@ import clsx from "clsx";
 import EventCallToAction from "../EventCallToAction/EventCallToAction";
 import Image from "next/image";
 import { EventsAuditionOne, EventsAuditionTwo } from "../../../../../public";
-import { LOCATION_VENUE_DATE } from "@/lib/constants";
 import EventAuditionDetails from "../EventAuditionDetails/EventAuditionDetails";
 
 export default function EventsAudition() {

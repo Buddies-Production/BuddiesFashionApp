@@ -52,21 +52,15 @@ export const LOCATION_VENUE_DATE = [
 		time: "10am to 4pm",
 	},
 	{
-		location: "Jaipur",
-		venue: "TBA",
-		date: "TBA",
+		location: "Dehradun",
+		venue: "Centrio Mall",
+		date: "18th November",
 		time: "10am to 4pm",
 	},
 	{
-		location: "Indore",
+		location: "Pune",
 		venue: "TBA",
-		date: "TBA",
-		time: "10am to 4pm",
-	},
-	{
-		location: "Hyderabad",
-		venue: "TBA",
-		date: "TBA",
+		date: "24th November",
 		time: "10am to 4pm",
 	},
 ];
@@ -109,7 +103,7 @@ export const STATES = [
 	"Puducherry (UT)",
 ];
 
-export const PREFFERED_AUDITION_CITY = ["Online", "Dehradun", "Pune"];
+export const PREFFERED_AUDITION_CITY = ["Online"];
 
 export const YEAR = [
 	"1996",

@@ -131,10 +131,10 @@ const ModelUserSchema = new mongoose.Schema<modelUserSchemaType>(
 				required: true,
 			},
 		},
-		mode: {
-			type: String,
-			required: true,
-		},
+		// mode: {
+		// 	type: String,
+		// 	required: true,
+		// },
 		height: {
 			feet: {
 				type: String,
