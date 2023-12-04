@@ -7,8 +7,8 @@ import { Tinos } from "next/font/google";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-	title: "Buddies Fashion",
-	description: "Buddies Production Mr and Miss India Runway model",
+	title: "MTV D2R Season 2",
+	description: "MTV D2R Season 2 Mr & Miss India Runway Model",
 };
 
 const TinosFont = Tinos({ weight: ["400", "700"], subsets: ["latin"] });
